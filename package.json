@@ -1,0 +1,19 @@
+{
+  "name": "ssas-2018",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycmjason/ssas-2018.git"
+  },
+  "author": "Jason Yu <jason.yu@thehutgroup.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ycmjason/ssas-2018/issues"
+  },
+  "homepage": "https://github.com/ycmjason/ssas-2018#readme"
+}
