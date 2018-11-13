@@ -5,10 +5,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-
 export default {
-  methods: mapActions(['signIn']),
+  methods: {
+    async signIn () {
+      if (await this.$store.dispatch('signIn')) {
+        this.$router.push('dashboard');
+      }
+    },
+  },
 };
 </script>
 

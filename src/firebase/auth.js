@@ -24,15 +24,16 @@ export const transformUser = (user) => {
   };
 };
 
-export const getCurrentUser = async () => {
-  const user = transformUser(firebase.auth().currentUser) || await getInitialUser();
-  if (!user) return null;
-  return user;
-};
-
-export const getInitialUser = () => new Promise((res, rej) => {
+const initialUserPromise = new Promise((res, rej) => {
   const unsub = firebase.auth().onAuthStateChanged((user) => {
     res(transformUser(user));
     unsub();
   });
 });
+
+export const getCurrentUser = async () => {
+  const user = transformUser(firebase.auth().currentUser) || await initialUserPromise;
+  if (!user) return null;
+  return user;
+};
+

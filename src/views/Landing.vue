@@ -1,16 +1,14 @@
 <template>
-  <div class="home">
-    <section>
-      <FacebookSignIn />
-    </section>
-  </div>
+  <section class="home">
+    <FacebookSignIn />
+  </section>
 </template>
 
 <script>
 import FacebookSignIn from '@/components/FacebookSignIn.vue';
 
 export default {
-  name: 'home',
+  name: 'landing',
   components: {
     FacebookSignIn,
   },
@@ -18,8 +16,7 @@ export default {
 </script>
 
 <style scoped>
-section {
-  max-width: 300px;
-  margin: 0 auto;
+.home {
+  text-align: center;
 }
 </style>

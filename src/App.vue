@@ -2,8 +2,7 @@
   <div id="app">
     <header>
       <h1>
-        Secret Santa Allocation System
-        <small>SSAS</small>
+        <u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem
       </h1>
     </header>
 
@@ -38,7 +37,7 @@ footer {
 </style>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Lora|Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lora:800i|Open+Sans');
 
 html {
   font-size: 18px;
@@ -47,11 +46,7 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lora', serif;
-
-  small {
-    display: block;
-    font-family: 'Open Sans', sans-serif;
-  }
+  font-style: italic;
 }
 
 *, *::before, *::after {
