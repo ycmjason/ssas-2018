@@ -6,6 +6,10 @@ import { getCurrentUser } from '@/firebase/auth';
 
 const usersRef = db.collection('users');
 
+export const findUserRefByUid = async uid => {
+  return usersRef.doc(uid);
+};
+
 export const findUserByUid = async uid => {
   const result = await transformDocumentRef(usersRef.doc(uid));
   if (!result) return null;
@@ -26,4 +30,11 @@ export const findOrCreateCurrentUser = async () => {
   });
 
   return transformDocumentRef(userRef);
+};
+
+export const getCurrentUserRef = async () => {
+  const user = await getCurrentUser();
+  if (!user) throw Error('Not signed in.');
+
+  return usersRef.doc(user.uid);
 };

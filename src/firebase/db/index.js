@@ -27,6 +27,10 @@ export const transformDocumentRef = async docRef => {
   return transformDocumentSnapshot(await docRef.get());
 };
 
+export const transformDocumentRefs = async refs => {
+  return await Promise.all(refs.map(transformDocumentRef));
+};
+
 export const transformQuerySnapshot = async querySnapshot => {
   return await Promise.all(querySnapshot.docs.map(transformDocumentSnapshot));
 };

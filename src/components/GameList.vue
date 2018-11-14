@@ -1,17 +1,21 @@
 <template>
   <div class="noGameFound" v-if="games.length <= 0">No games found.</div>
-  <table v-else>
-    <tr>
-      <th>Title</th>
-      <th>Created By</th>
-      <th>Creation Date</th>
-    </tr>
-    <tr v-for="{ id, title, creator_uid, created } in games" :key="id">
-      <td>{{ title }}</td>
-      <td>{{ creator_uid }}</td>
-      <td>{{ created | date }}</td>
-    </tr>
-  </table>
+  <section v-else class="gameCards">
+    <div v-for="{ id, title, description, creator, created } in games" :key="id" class="gameCard">
+      <h3>{{ title }}</h3>
+      <p>
+        {{ description }}
+      </p>
+      <footer>
+        <div>
+          created by: {{ creator.displayName }}
+        </div>
+        <div>
+          created on: {{ created | date }}
+        </div>
+      </footer>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -31,7 +35,24 @@ export default {
   font-style: italic;
 }
 
-table {
-  width: 100%;
+.gameCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.gameCard {
+  max-width: 400px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+}
+
+.gameCard h3 {
+  margin: 0;
 }
 </style>
