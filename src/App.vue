@@ -1,18 +1,6 @@
 <template>
   <div id="app">
-    <header>
-      <h1>
-        <u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem
-      </h1>
-    </header>
-
-    <main>
-      <router-view/>
-    </main>
-
-    <footer>
-      &copy; Jason Yu 2018
-    </footer>
+    <router-view/>
   </div>
 </template>
 
@@ -26,26 +14,24 @@ export default {
 };
 </script>
 
-<style scoped>
-header {
-  margin-bottom: 1rem;
-}
-
-footer {
-  padding-top: 1rem;
-}
-</style>
-
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Lora:800i|Open+Sans');
 
+:root {
+  --font-family-heading: 'Lora', serif;
+  --font-family-body: 'Open Sans', sans-serif;
+  --color-brand: #ff9021;
+  --color-brand-contrast: #fff;
+  --color-border: #dddddd;
+}
+
 html {
   font-size: 18px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-family-body);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lora', serif;
+  font-family: var(--font-family-heading);
   font-style: italic;
 }
 
@@ -53,9 +39,16 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box;
 }
 
-#app {
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+input, textarea {
+  padding: 0.8rem;
+  border: 1px solid var(--color-border);
+}
+
+button, input[type=submit], input[type=button] {
+  padding: 0.8rem;
+  background: var(--color-brand);
+  color: var(--color-brand-contrast);
+  border: 0;
+  cursor: pointer;
 }
 </style>

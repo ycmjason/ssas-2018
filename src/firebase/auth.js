@@ -1,38 +1,45 @@
 import firebase from './index';
+import { findOrCreateCurrentUser } from './db/users';
 
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 const provider = new firebase.auth.FacebookAuthProvider();
 provider.addScope('email');
 
-export const signIn = () => {
-  return firebase.auth().signInWithPopup(provider);
-};
-
-export const signOut = () => {
-  return firebase.auth().signOut();
-};
-
-export const transformUser = (user) => {
+const transformUser = (user) => {
   if (!user) return null;
-  const { uid, email, displayName, photoUrl } = user;
+  const { uid, email, displayName, photoURL } = user;
   return {
     uid,
     email,
     displayName,
-    photoUrl,
+    photoURL,
   };
 };
 
-const initialUserPromise = new Promise((res, rej) => {
+const currentUserReady = new Promise((res, rej) => {
   const unsub = firebase.auth().onAuthStateChanged((user) => {
-    res(transformUser(user));
+    res();
     unsub();
   });
 });
 
+export const signIn = async () => {
+  const currentUser = await getCurrentUser();
+  if (currentUser === null) {
+    const { user } = await firebase.auth().signInWithPopup(provider);
+    findOrCreateCurrentUser();
+    return transformUser(user);
+  } else {
+    return currentUser;
+  }
+};
+
+export const signOut = async () => await firebase.auth().signOut();
+
 export const getCurrentUser = async () => {
-  const user = transformUser(firebase.auth().currentUser) || await initialUserPromise;
+  await currentUserReady;
+  const user = transformUser(firebase.auth().currentUser);
   if (!user) return null;
   return user;
 };

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { signIn, signOut, transformUser } from '../firebase/auth';
-import { getGamesForUser } from '@/firebase/db/games';
+import { signIn, signOut } from '../firebase/auth';
+import { findGamesForUser, createGame } from '@/firebase/db/games';
 
 Vue.use(Vuex);
 
@@ -15,13 +15,13 @@ export default new Vuex.Store({
   },
   mutations: {
     setUser: (state, user) => state.user = user,
-    setMyGames: (state, games) => state.games = games,
+    setMyGames: (state, games) => state.myGames = games,
   },
   actions: {
     async signIn ({ commit }) {
-      const { user } = await signIn();
-      commit('setUser', transformUser(user));
-      return !!user;
+      const user = await signIn();
+      commit('setUser', user);
+      return user;
     },
 
     async signOut ({ commit }) {
@@ -33,7 +33,13 @@ export default new Vuex.Store({
       if (!getters.isSignedIn) {
         return commit('setMyGames', []);
       }
-      await getGamesForUser(state.user.uid);
+      const games = await findGamesForUser(state.user.uid);
+      commit('setMyGames', games);
+      return games;
+    },
+
+    async createGame (context, { title, description }) {
+      return await createGame({ title, description });
     },
   },
 });

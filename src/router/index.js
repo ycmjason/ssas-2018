@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Landing from '@/views/Landing.vue';
 import Dashboard from '@/views/Dashboard/index.vue';
-import createGame from '@/views/createGame.vue';
+import CreateGame from '@/views/CreateGame.vue';
 
 import authGuard from './guards/authGuard';
 
@@ -24,9 +24,13 @@ const router = new Router({
     },
     {
       path: '/create',
-      name: 'createGame',
-      component: createGame,
+      name: 'CreateGame',
+      component: CreateGame,
       beforeEnter: authGuard,
+    },
+    {
+      path: '*',
+      redirect: '/',
     },
   ],
 });

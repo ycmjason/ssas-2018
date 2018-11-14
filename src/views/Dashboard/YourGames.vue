@@ -1,7 +1,7 @@
 <template>
   <section class="yourGames">
     <h2>Your Games</h2>
-    <router-link :to="{ name: 'createGame' }">+</router-link>
+    <router-link :to="{ name: 'CreateGame' }">+</router-link>
     <div class="yourGames_GameList">
       <GameList :games="myGames" />
     </div>
@@ -12,8 +12,8 @@
 import { mapState } from 'vuex';
 
 import GameList from '@/components/GameList.vue';
-
 export default {
+
   name: 'dashboard',
   created () {
     this.$store.dispatch('fetchMyGames');
