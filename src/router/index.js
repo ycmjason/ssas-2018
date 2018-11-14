@@ -8,6 +8,10 @@ import authGuard from './guards/authGuard';
 
 Vue.use(Router);
 
+const giphyfy = (component) => ({
+  render: h => h('GiphyBackgroundLayout', {}, [h(component)]),
+});
+
 const router = new Router({
   mode: 'history',
   routes: [
@@ -38,7 +42,10 @@ const router = new Router({
       path: '*',
       redirect: '/',
     },
-  ],
+  ].map(route => ({
+    ...route,
+    component: route.component? giphyfy(route.component): route.component,
+  })),
 });
 
 export default router;

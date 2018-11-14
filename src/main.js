@@ -22,6 +22,7 @@ const registerAll = (context, prefix = '') => context.keys().forEach(p => {
 });
 
 registerAll(require.context('@/elements', false, /.*\.vue/));
+registerAll(require.context('@/layouts', false, /.*\.vue/));
 
 new Vue({
   store,

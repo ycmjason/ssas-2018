@@ -1,24 +1,20 @@
 <template>
-  <GiphyBackgroundLayout>
-    <section class="landing" :style="`background-image: url(${bgImg})`">
-      <Card class="loginCard">
-        <img class="logo" src="@/assets/logo.svg">
-        <h1>SSAS</h1>
-        <FacebookSignIn />
-      </Card>
-    </section>
-  </GiphyBackgroundLayout>
+  <section class="landing">
+    <Card class="loginCard">
+      <img class="logo" src="@/assets/logo.svg">
+      <h1>SSAS</h1>
+      <FacebookSignIn />
+    </Card>
+  </section>
 </template>
 
 <script>
-import GiphyBackgroundLayout from '@/layouts/GiphyBackgroundLayout.vue';
 import FacebookSignIn from '@/components/FacebookSignIn.vue';
 
 export default {
   name: 'landing',
   components: {
     FacebookSignIn,
-    GiphyBackgroundLayout,
   },
 };
 </script>

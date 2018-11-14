@@ -6,13 +6,11 @@
 </template>
 
 <script>
-import MainLayout from '@/layouts/MainLayout.vue';
 import Survey from '@/components/Survey.vue';
 
 export default {
   name: 'createGame',
   components: {
-    MainLayout,
     Survey,
   },
   data: () => ({
