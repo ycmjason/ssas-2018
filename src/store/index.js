@@ -33,7 +33,7 @@ export default new Vuex.Store({
       if (!getters.isSignedIn) {
         return commit('setMyGames', []);
       }
-      const games = await findGamesForUser(state.user.uid);
+      const games = await findGamesForUser(state.user);
       commit('setMyGames', games);
       return games;
     },

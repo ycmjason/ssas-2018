@@ -2,13 +2,8 @@ import db, {
   getServerTimestamp,
   transformDocumentRef,
 } from './index';
-import { getCurrentUser } from '@/firebase/auth';
 
 const usersRef = db.collection('users');
-
-export const findUserRefByUid = async uid => {
-  return usersRef.doc(uid);
-};
 
 export const findUserByUid = async uid => {
   const result = await transformDocumentRef(usersRef.doc(uid));
@@ -16,9 +11,8 @@ export const findUserByUid = async uid => {
   return result;
 };
 
-export const findOrCreateCurrentUser = async () => {
-  const user = await getCurrentUser();
-  if (!user) throw Error('Not signed in.');
+export const findOrCreateUser = async user => {
+  if (!user) throw Error('Expected user.');
 
   const found = await findUserByUid(user.uid);
   if (found) return found;
@@ -26,15 +20,10 @@ export const findOrCreateCurrentUser = async () => {
   const userRef = usersRef.doc(user.uid);
   await userRef.set({
     ...user,
-    created: getServerTimestamp(),
+    timestamps: {
+      created: getServerTimestamp(),
+    },
   });
 
   return transformDocumentRef(userRef);
-};
-
-export const getCurrentUserRef = async () => {
-  const user = await getCurrentUser();
-  if (!user) throw Error('Not signed in.');
-
-  return usersRef.doc(user.uid);
 };

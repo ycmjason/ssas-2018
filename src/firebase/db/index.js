@@ -1,4 +1,5 @@
 import firebase from '../index';
+import { mapValues } from '@/utils/array';
 
 const db = firebase.firestore();
 
@@ -8,33 +9,38 @@ export default db;
 
 export const getServerTimestamp = () => firebase.firestore.FieldValue.serverTimestamp();
 
-export const transformTimestamp = timestamp => timestamp.toDate();
-
 export const transformDocumentSnapshot = async snapshot => {
   const doc = await snapshot.data();
 
   if (!doc) return null;
 
-  doc.created = transformTimestamp(doc.created);
+  if (doc.timestamps) {
+    doc.timestamps = mapValues(doc.timestamps, timestamp => timestamp.toDate());
+  }
 
   return {
-    id: snapshot.id,
     ...doc,
+    id: snapshot.id,
+    _ref: snapshot.ref,
   };
 };
 
-export const transformDocumentRef = async docRef => {
-  return transformDocumentSnapshot(await docRef.get());
-};
-
-export const transformDocumentRefs = async refs => {
-  return await Promise.all(refs.map(transformDocumentRef));
+export const transformDocumentSnapshots = async snapshots => {
+  return await Promise.all(snapshots.map(transformDocumentSnapshot));
 };
 
 export const transformQuerySnapshot = async querySnapshot => {
-  return await Promise.all(querySnapshot.docs.map(transformDocumentSnapshot));
+  return await transformDocumentSnapshots(querySnapshot.docs);
 };
 
 export const executeQuery = async query => {
   return await transformQuerySnapshot(await query.get());
+};
+
+export const transformDocumentRef = async docRef => {
+  return await transformDocumentSnapshot(await docRef.get());
+};
+
+export const transformDocumentRefs = async refs => {
+  return await Promise.all(refs.map(transformDocumentRef));
 };

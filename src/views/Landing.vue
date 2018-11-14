@@ -1,10 +1,10 @@
 <template>
   <section class="landing" :style="`background-image: url(${bgImg})`">
-    <div class="card">
+    <Card class="loginCard">
       <img class="logo" src="@/assets/logo.svg">
       <h1>SSAS</h1>
       <FacebookSignIn />
-    </div>
+    </Card>
   </section>
 </template>
 
@@ -42,13 +42,9 @@ export default {
   max-width: 70%;
 }
 
-.card {
-  background: white;
+>>> .loginCard {
   flex-grow: 1;
   max-width: 500px;
-  padding: 1rem;
-  border-radius: 5px;
-  border: 1px var(--color-border) solid;
 }
 
 h1 {

@@ -5,7 +5,6 @@ import db, {
   executeQuery,
 } from './index';
 
-import { findUserRefByUid, getCurrentUserRef } from './users';
 import { getCurrentUser } from '@/firebase/auth';
 
 const gamesRef = db.collection('games');
@@ -22,8 +21,8 @@ const transformGames = async games => {
   return await Promise.all(games.map(transformGame));
 };
 
-export const findGamesForUser = async uid => {
-  const games = await executeQuery(gamesRef.where('participants', 'array-contains', await findUserRefByUid(uid)));
+export const findGamesForUser = async ({ _ref }) => {
+  const games = await executeQuery(gamesRef.where('participants', 'array-contains', _ref));
   return await transformGames(games);
 };
 
@@ -31,13 +30,15 @@ export const createGame = async ({ title, description }) => {
   const user = await getCurrentUser();
   if (!user) throw Error('Not signed in.');
 
-  const userRef = await getCurrentUserRef();
+  const userRef = (await getCurrentUser())._ref;
   const gameRef = await gamesRef.add({
     creator: userRef,
     title,
     description,
     participants: [userRef],
-    created: getServerTimestamp(),
+    timestamps: {
+      created: getServerTimestamp(),
+    },
   });
 
   const game = await transformDocumentRef(gameRef);
