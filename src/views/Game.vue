@@ -1,18 +1,30 @@
 <template>
   <MainLayout>
-    <header>
-      <h2>{{ game.title }}</h2>
-      <p>{{ game.description }}</p>
-    </header>
-    <main>
-      <h3>Enrolled participants</h3>
-      <ul>
-        <li v-for="parti in game.participants" :key="parti.id">
-          {{ parti.displayName }}
-          <template v-if="parti.uid === game.creator.uid">(owner)</template>
-        </li>
-      </ul>
-    </main>
+    <div v-if="!game">
+      <Back />
+      Loading...
+    </div>
+    <div v-else>
+      <header>
+        <h2>
+          <Back />
+          {{ game.title }}
+        </h2>
+        <p>{{ game.description }}</p>
+      </header>
+      <main>
+        <Card class="participants_card">
+          <h3>Enrolled participants</h3>
+          <ul>
+            <li v-for="parti in game.participants" :key="parti.id">
+              <img :src="parti.photoURL">
+              {{ parti.displayName }}
+              <template v-if="parti.uid === game.creator.uid">(owner)</template>
+            </li>
+          </ul>
+        </Card>
+      </main>
+    </div>
   </MainLayout>
 </template>
 
@@ -25,11 +37,24 @@ export default {
   },
   props: ['id'],
   data: () => ({
-    game: {},
+    game: null,
   }),
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.participants_card {
+  ul {
+    padding-left: 0;
+  }
 
+  li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 1rem;
+    }
+  }
+}
 </style>

@@ -2,7 +2,9 @@
   <section class="yourGames">
     <header>
       <h2>Your Games</h2>
-      <router-link :to="{ name: 'CreateGame' }" class="newGameLink" title="Create new game">+</router-link>
+      <router-link :to="{ name: 'CreateGame' }" class="createNewGame" title="Create new game">
+        <CircleCharacterIcon>+</CircleCharacterIcon>
+      </router-link>
     </header>
 
     <GameList :games="myGames" />
@@ -31,19 +33,7 @@ header {
   align-items: baseline;
 }
 
-.newGameLink {
-  text-decoration: none;
-  font-size: 1rem;
-  display: block;
-  border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  color: var(--color-border);
-  border: 1px solid var(--color-border);
-  box-sizing: content-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.createNewGame {
   margin-left: 0.5rem;
 }
 </style>

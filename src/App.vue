@@ -39,6 +39,10 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 input, textarea {
   padding: 0.8rem;
   border: 1px solid var(--color-border);

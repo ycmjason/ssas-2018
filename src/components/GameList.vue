@@ -61,10 +61,6 @@ export default {
   align-items: center;
 }
 
-.gameCard h3 {
-  margin-top: 0;
-}
-
 .gameCard_footer ul {
   font-size: 0.8rem;
   padding: 0;
