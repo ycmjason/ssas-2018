@@ -1,6 +1,7 @@
 <template>
   <section class="landing" :style="`background-image: url(${bgImg})`">
     <div class="card">
+      <img class="logo" src="@/assets/logo.svg">
       <h1>SSAS</h1>
       <FacebookSignIn />
     </div>
@@ -33,6 +34,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.logo {
+  display: block;
+  margin: 1rem auto;
+  max-width: 70%;
 }
 
 .card {

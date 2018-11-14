@@ -2,7 +2,10 @@
   <div class="container">
     <header>
       <router-link to="/" tag="h1" class="siteName">
-        <u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem
+        <img src="@/assets/logo.svg" class="logo">
+        <div>
+          <u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem
+        </div>
       </router-link>
     </header>
 
@@ -21,7 +24,14 @@ header {
   margin-bottom: 1rem;
 }
 
+.logo {
+  height: 1.5em;
+  margin-right: 1rem;
+}
+
 .siteName {
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
