@@ -29,6 +29,12 @@ const router = new Router({
       beforeEnter: authGuard,
     },
     {
+      path: '/game/:id',
+      name: 'Game',
+      component: Landing,
+      beforeEnter: authGuard,
+    },
+    {
       path: '*',
       redirect: '/',
     },

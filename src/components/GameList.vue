@@ -1,15 +1,22 @@
 <template>
   <div class="noGameFound" v-if="games.length <= 0">No games found.</div>
   <div v-else class="gameCards">
-    <Card v-for="{ id, title, description, creator, timestamps } in games" :key="id" class="gameCard">
-      <h3>{{ title }}</h3>
-      <footer class="gameCard_footer">
-        <ul>
-          <li>created by: {{ creator.displayName }}</li>
-          <li>created on: {{ timestamps.created | date }}</li>
-        </ul>
-      </footer>
-    </Card>
+    <router-link
+        v-for="{ id, title, description, creator, timestamps } in games"
+        :key="id"
+        :to="`/game/${id}`"
+        tag="div"
+        class="gameCard_wrapper">
+      <Card class="gameCard">
+        <h3>{{ title }}</h3>
+        <footer class="gameCard_footer">
+          <ul>
+            <li>created by: {{ creator.displayName }}</li>
+            <li>created on: {{ timestamps.created | date }}</li>
+          </ul>
+        </footer>
+      </Card>
+    </router-link>
   </div>
 </template>
 
@@ -24,30 +31,33 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .noGameFound {
   text-align: center;
   font-style: italic;
 }
 
 .gameCards {
+  cursor: pointer;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
+.gameCard_wrapper {
+  flex-grow: 1;
+  margin-left: 1rem;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
 .gameCard {
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  flex-grow: 1;
-  margin-left: 1rem;
-}
-
-.gameCard:first-child {
-  margin-left: 0;
 }
 
 .gameCard h3 {
