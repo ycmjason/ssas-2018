@@ -39,18 +39,19 @@ export default {
 
 .gameCards {
   cursor: pointer;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  justify-items: stretch;
+  align-items: stretch;
+  grid-row-gap: 1rem;
+  grid-column-gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .gameCard_wrapper {
-  flex-grow: 1;
-  margin-left: 1rem;
-
-  &:first-child {
-    margin-left: 0;
-  }
 }
 
 .gameCard {

@@ -21,6 +21,15 @@ const transformGames = async games => {
   return await Promise.all(games.map(transformGame));
 };
 
+const transformGameRef = async gameRef => {
+  return await transformGame(await transformDocumentRef(gameRef));
+};
+
+export const findGameById = async id => {
+  const gameRef = gamesRef.doc(id);
+  return await transformGameRef(gameRef);
+};
+
 export const findGamesForUser = async ({ _ref }) => {
   const games = await executeQuery(gamesRef.where('participants', 'array-contains', _ref));
   return await transformGames(games);

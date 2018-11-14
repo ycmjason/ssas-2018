@@ -28,16 +28,16 @@ export default {
 <style scoped>
 header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .newGameLink {
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1rem;
   display: block;
   border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
   color: var(--color-border);
   border: 1px solid var(--color-border);
   box-sizing: content-box;

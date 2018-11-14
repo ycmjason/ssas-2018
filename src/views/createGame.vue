@@ -32,6 +32,7 @@ export default {
   methods: {
     async createGame ({ title, description }) {
       await this.$store.dispatch('createGame', { title, description });
+      this.$router.push('/dashboard');
     },
   },
 };
