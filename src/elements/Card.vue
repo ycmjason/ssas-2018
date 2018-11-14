@@ -1,5 +1,5 @@
-<template functional>
-  <div :class="['card', data.class, data.staticClass].join(' ')" :style="data.style">
+<template>
+  <div class="card">
     <slot></slot>
   </div>
 </template>

@@ -22,7 +22,7 @@ export default {
   --font-family-body: 'Open Sans', sans-serif;
   --color-brand: #ff9021;
   --color-brand-contrast: #fff;
-  --color-border: #dddddd;
+  --color-border: #acacac;
 }
 
 html {
