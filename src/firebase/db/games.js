@@ -41,10 +41,17 @@ export const createGame = async ({ title, description }) => {
 };
 
 export const joinGame = async (game, user) => {
-  game._ref.update({
+  await game._ref.update({
     participants: [
       ...game.participants.map(({ _ref }) => _ref),
       user._ref,
     ],
+  });
+};
+
+export const setAllocation = async (game, allocation) => {
+  await game._ref.update({
+    allocation: allocation.map(({ from, to }) => ({ from: from._ref, to: to._ref })),
+    'timestamps.allocation': getServerTimestamp(),
   });
 };

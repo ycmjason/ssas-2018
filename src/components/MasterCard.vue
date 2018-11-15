@@ -1,6 +1,6 @@
 <template>
   <Card v-bind="$attrs">
-    <h3>Your master</h3>
+    <h3>You are the secret santa of</h3>
     <p v-if="!master" class="no_master">No allocation yet.</p>
     <div v-else class="master_card_content">
       <img :src="`//graph.facebook.com/${master.fbid}/picture?type=large`">

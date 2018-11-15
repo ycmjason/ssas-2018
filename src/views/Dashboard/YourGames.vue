@@ -12,12 +12,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 import GameList from '@/components/GameList.vue';
 
 export default {
-  computed: mapState(['user', 'myGames']),
+  computed: {
+    ...mapState(['user']),
+    ...mapGetters(['myGames']),
+  },
   watch: {
     user: {
       handler () {

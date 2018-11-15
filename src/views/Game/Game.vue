@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { findGameById } from '@/firebase/db/games';
+import { mapState, mapActions } from 'vuex';
 import GameDetails from './GameDetails.vue';
 import GameJoin from './GameJoin.vue';
 
@@ -29,7 +28,7 @@ export default {
   },
 
   async created () {
-    await this.fetchGame();
+    this.game = await this.getGameById(this.id);
     if (!this.game) this.$router.replace('/404');
   },
 
@@ -40,9 +39,7 @@ export default {
   }),
 
   methods: {
-    async fetchGame () {
-      this.game = await findGameById(this.id);
-    },
+    ...mapActions(['getGameById']),
   },
 
   computed: {

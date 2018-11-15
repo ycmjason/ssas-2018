@@ -32,26 +32,30 @@ export const executeQuery = async query => {
   return await transformQuerySnapshot(await query.get());
 };
 
+export const transformValue = async v => {
+  if (v instanceof firebase.firestore.DocumentReference) {
+    return await transformDocumentRef(v);
+  }
+
+  if (v instanceof firebase.firestore.Timestamp) {
+    return v.toDate();
+  }
+
+  if (Array.isArray(v)) {
+    return await transformDocumentRefs(v);
+  }
+
+  if (typeof v === 'object') {
+    return await transformMap(v);
+  }
+
+  return v;
+};
+
 export const transformMap = async map => {
-  return (await Promise.all(Object.entries(map).map(async ([k, v]) => {
-    if (v instanceof firebase.firestore.DocumentReference) {
-      return [k, await transformDocumentRef(v)];
-    }
-
-    if (v instanceof firebase.firestore.Timestamp) {
-      return [k, v.toDate()];
-    }
-
-    if (Array.isArray(v)) {
-      return [k, await transformDocumentRefs(v)];
-    }
-
-    if (typeof v === 'object') {
-      return [k, await transformMap(v)];
-    }
-
-    return [k, v];
-  }))).reduce((newMap, [k, v]) => ({
+  return (await Promise.all(
+    Object.entries(map).map(async ([k, v]) => [k, await transformValue(v)])
+  )).reduce((newMap, [k, v]) => ({
     ...newMap,
     [k]: v,
   }), {});
@@ -62,5 +66,5 @@ export const transformDocumentRef = async docRef => {
 };
 
 export const transformDocumentRefs = async refs => {
-  return await Promise.all(refs.map(transformDocumentRef));
+  return await Promise.all(refs.map(transformValue));
 };

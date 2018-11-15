@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Landing from '@/views/Landing.vue';
-import Dashboard from '@/views/Dashboard/index.vue';
+import Dashboard from '@/views/Dashboard/Dashboard.vue';
 import CreateGame from '@/views/CreateGame.vue';
-import Game from '@/views/Game/index.vue';
+import Game from '@/views/Game/Game.vue';
 import NotFound from '@/views/NotFound';
 
 import authGuard from './guards/authGuard';
