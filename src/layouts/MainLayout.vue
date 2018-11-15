@@ -11,6 +11,10 @@
       </header>
 
       <main>
+        <header class="welcome-banner" v-if="user">
+          <p>Welcome back, {{ user.displayName }}!</p>
+          <SignOut />
+        </header>
         <slot></slot>
       </main>
 
@@ -22,10 +26,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import GiphyBackgroundLayout from './GiphyBackgroundLayout.vue';
+import SignOut from '@/components/SignOut';
 
 export default {
-  components: { GiphyBackgroundLayout },
+  components: { GiphyBackgroundLayout, SignOut },
+  computed: mapState(['user']),
 };
 </script>
 
@@ -55,6 +63,12 @@ footer {
   padding: 1px 5rem;
   margin-left: auto;
   margin-right: auto;
-  background: white;
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.welcome-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
