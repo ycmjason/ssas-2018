@@ -3,7 +3,7 @@
     <div v-if="!game">Loading...</div>
     <main v-else>
       <header>
-        <Back />
+        <Back to="/dashboard" />
         <h2>
           {{ game.title }}
         </h2>
@@ -11,13 +11,13 @@
       </header>
 
       <GameDetails :game="game" v-if="isParticipant" />
-      <GameJoin :game="game" @join="fetchGame" v-else />
+      <GameJoin :game="game" v-else />
     </main>
   </MainLayout>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import GameDetails from './GameDetails.vue';
 import GameJoin from './GameJoin.vue';
 
@@ -28,18 +28,14 @@ export default {
   },
 
   async created () {
-    this.game = await this.getGameById(this.id);
+    await this.setCurrentGameId(this.id);
     if (!this.game) this.$router.replace('/404');
   },
 
   props: ['id'],
 
-  data: () => ({
-    game: null,
-  }),
-
   methods: {
-    ...mapActions(['getGameById']),
+    ...mapActions(['setCurrentGameId']),
   },
 
   computed: {
@@ -48,6 +44,9 @@ export default {
       return this.game.participants.map(({ uid }) => uid).includes(this.user.uid);
     },
     ...mapState(['user']),
+    ...mapGetters({
+      game: 'currentGame',
+    }),
   },
 };
 </script>

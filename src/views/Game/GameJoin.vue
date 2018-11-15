@@ -21,7 +21,6 @@ export default {
       if (!this.game) throw Error('No game is passed');
       this.joining = true;
       await this.$store.dispatch('joinGame', this.game);
-      this.$emit('join');
       this.joining = false;
     },
   },

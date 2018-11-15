@@ -1,15 +1,12 @@
 <template>
-  <a href="#" @click="signOut">Sign out</a>
+  <router-link to="/" @click="signOut">Sign out</router-link>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-  methods: {
-    async signOut () {
-      await this.$store.dispatch('signOut');
-      this.$router.push('/');
-    },
-  },
+  methods: mapActions(['signOut']),
 };
 </script>
 

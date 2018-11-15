@@ -1,6 +1,6 @@
 <template>
   <Card class="participants_card">
-    <h3>Enrolled participants</h3>
+    <h3>Enrolled participants ({{ participants.length }})</h3>
     <ul>
       <li v-for="parti in participants" :key="parti.id">
         <a class="profile_link" target="_blank" :href="parti.link">
@@ -27,6 +27,8 @@ export default {
 ul {
   padding-left: 0;
   margin-bottom: 0;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 li {

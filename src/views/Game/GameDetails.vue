@@ -26,6 +26,7 @@ export default {
   computed: {
     ...mapState(['user']),
     yourMaster () {
+      if (!this.game.allocation) return null;
       return this.game.allocation.find(({ from }) => from.uid === this.user.uid).to;
     },
     isMaster () {

@@ -9,7 +9,8 @@ export default {
   props: ['to'],
   methods: {
     back () {
-      this.$router.go(this.to || -1);
+      if (!this.to) this.$router.go(-1);
+      this.$router.push(this.to);
     },
   },
 };

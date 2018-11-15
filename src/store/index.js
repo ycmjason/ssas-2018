@@ -18,15 +18,21 @@ export default new Vuex.Store({
   state: {
     user: null,
     games: null,
+    currentGameId: null,
   },
   getters: {
     isSignedIn: ({ user }) => !!user,
     myGames: ({ user, games }) => games && games.filter(({ participants }) => {
       return participants.map(({ uid }) => uid).includes(user.uid);
     }),
+    currentGame: ({ games, currentGameId }) => {
+      if (!games) return null;
+      return games.find(({ id }) => currentGameId);
+    },
   },
   mutations: {
     setUser: (state, user) => state.user = user,
+    setCurrentGameId: (state, id) => state.currentGameId = id,
     addGame: (state, game) => {
       state.games = uniqById([game, ...(state.games || [])]);
     },
@@ -59,7 +65,15 @@ export default new Vuex.Store({
     async fetchGameById ({ state, commit }, id) {
       const game = await findGameById(id);
       commit('addGame', game);
+      if (state.currentGameId && state.currentGameId === id) {
+        commit('setCurrentGameId', id);
+      }
       return game;
+    },
+
+    async setCurrentGameId ({ dispatch, commit }, id) {
+      await dispatch('getGameById', id);
+      commit('setCurrentGameId', id);
     },
 
     async getGameById ({ state, dispatch }, id) {
@@ -75,8 +89,9 @@ export default new Vuex.Store({
       return await createGame({ title, description });
     },
 
-    async joinGame (context, game) {
+    async joinGame ({ dispatch }, game) {
       await joinGame(game, await getCurrentUser());
+      await dispatch('fetchGameById', game.id);
     },
 
     async setAllocation (context, { game, allocation }) {
