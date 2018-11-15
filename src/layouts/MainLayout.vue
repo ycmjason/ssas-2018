@@ -2,12 +2,12 @@
   <GiphyBackgroundLayout>
     <div class="container">
       <header>
-        <router-link to="/" tag="h1" class="siteName">
+        <HomeLink to="/" tag="h1" class="siteName">
           <img src="@/assets/logo.svg" class="logo">
           <div>
             <u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem
           </div>
-        </router-link>
+        </HomeLink>
       </header>
 
       <main>
@@ -38,10 +38,6 @@ export default {
 </script>
 
 <style scoped>
-header {
-  margin-bottom: 1rem;
-}
-
 .logo {
   height: 1.5em;
   margin-right: 1rem;

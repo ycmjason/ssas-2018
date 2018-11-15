@@ -19,8 +19,11 @@ import GameList from '@/components/GameList.vue';
 export default {
   computed: mapState(['user', 'myGames']),
   watch: {
-    user () {
-      this.$store.dispatch('fetchMyGames');
+    user: {
+      handler () {
+        this.$store.dispatch('fetchMyGames');
+      },
+      immediate: true,
     },
   },
   components: {

@@ -5,14 +5,12 @@
 </template>
 
 <script>
-const GIPHY_ENDPOINT = 'http://api.giphy.com/v1/gifs/random?api_key=5ZiDzE9O3Ey92la0cgHyXPVL2klNIRkm&tag=christmas';
+import { getRandomGif } from '@/utils/giphy';
 
 export default {
   name: 'GiphyBackground',
   async created () {
-    const res = await fetch(GIPHY_ENDPOINT);
-    const { data } = await res.json();
-    this.bgImg = data.image_original_url;
+    this.bgImg = await getRandomGif('christmas');
   },
   data: () => ({
     bgImg: '',

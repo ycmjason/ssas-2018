@@ -9,6 +9,7 @@
             <img :src="parti.photoURL">
             {{ parti.displayName }}
             <template v-if="parti.uid === game.creator.uid">(owner)</template>
+            <template v-if="parti.uid === user.uid">(you)</template>
           </a>
         </li>
       </ul>
@@ -18,8 +19,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: ['game'],
+  computed: mapState(['user']),
 };
 </script>
 

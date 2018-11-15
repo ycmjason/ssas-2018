@@ -4,6 +4,7 @@ import Landing from '@/views/Landing.vue';
 import Dashboard from '@/views/Dashboard/index.vue';
 import CreateGame from '@/views/CreateGame.vue';
 import Game from '@/views/Game/index.vue';
+import NotFound from '@/views/NotFound';
 
 import authGuard from './guards/authGuard';
 
@@ -46,8 +47,14 @@ const router = new Router({
       beforeEnter: authGuard,
     },
     {
+      path: '/404',
+      name: 'Not Found',
+      props: true,
+      component: NotFound,
+    },
+    {
       path: '*',
-      redirect: '/',
+      redirect: '/404',
     },
   ].map(route => ({
     ...route,

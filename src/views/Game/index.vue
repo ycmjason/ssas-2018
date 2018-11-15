@@ -1,6 +1,6 @@
 <template>
   <MainLayout>
-    <div v-if="!game"><Back /> Loading...</div>
+    <div v-if="!game">Loading...</div>
     <main v-else>
       <header>
         <Back />
@@ -48,7 +48,6 @@ export default {
   computed: {
     isParticipant () {
       if (!this.game) return false;
-      console.log(this.game);
       return this.game.participants.map(({ uid }) => uid).includes(this.user.uid);
     },
     ...mapState(['user']),
