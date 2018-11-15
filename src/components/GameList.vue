@@ -1,5 +1,6 @@
 <template>
-  <div class="noGameFound" v-if="games.length <= 0">No games found.</div>
+  <div class="noGameFound" v-if="!games">Loading...</div>
+  <div class="noGameFound" v-else-if="games.length <= 0">No games found.</div>
   <div v-else class="gameCards">
     <router-link
         v-for="{ id, title, description, creator, timestamps } in games"

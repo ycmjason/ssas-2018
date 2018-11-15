@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
-    myGames: [],
+    myGames: null,
   },
   getters: {
     isSignedIn: ({ user }) => !!user,
@@ -31,7 +31,7 @@ export default new Vuex.Store({
 
     async fetchMyGames ({ state, getters, commit }) {
       if (!getters.isSignedIn) {
-        return commit('setMyGames', []);
+        return commit('setMyGames', null);
       }
       const games = await findGamesForUser(state.user);
       commit('setMyGames', games);

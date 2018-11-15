@@ -17,10 +17,12 @@ import { mapState } from 'vuex';
 import GameList from '@/components/GameList.vue';
 
 export default {
-  created () {
-    this.$store.dispatch('fetchMyGames');
-  },
   computed: mapState(['user', 'myGames']),
+  watch: {
+    user () {
+      this.$store.dispatch('fetchMyGames');
+    },
+  },
   components: {
     GameList,
   },
