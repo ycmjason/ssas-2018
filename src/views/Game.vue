@@ -6,8 +6,8 @@
     </div>
     <div v-else>
       <header>
+        <Back />
         <h2>
-          <Back />
           {{ game.title }}
         </h2>
         <p>{{ game.description }}</p>
@@ -17,9 +17,11 @@
           <h3>Enrolled participants</h3>
           <ul>
             <li v-for="parti in game.participants" :key="parti.id">
-              <img :src="parti.photoURL">
-              {{ parti.displayName }}
-              <template v-if="parti.uid === game.creator.uid">(owner)</template>
+              <a class="profile_link" target="_blank" :href="parti.link">
+                <img :src="parti.photoURL">
+                {{ parti.displayName }}
+                <template v-if="parti.uid === game.creator.uid">(owner)</template>
+              </a>
             </li>
           </ul>
         </Card>
@@ -43,15 +45,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  h2 {
+    margin-left: 1rem;
+  }
+
+  p {
+    flex-grow: 1;
+    width: 100%;
+    margin-top: 0;
+  }
+}
 .participants_card {
   ul {
     padding-left: 0;
+    margin-bottom: 0;
   }
 
   li {
     list-style: none;
     display: flex;
     align-items: center;
+
+    .profile_link {
+      display: inline-flex;
+      align-items: center;
+    }
+
     img {
       margin-right: 1rem;
     }

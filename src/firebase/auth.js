@@ -5,6 +5,7 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 const provider = new firebase.auth.FacebookAuthProvider();
 provider.addScope('email');
+provider.addScope('user_link');
 
 const currentUserReady = new Promise((res, rej) => {
   const unsub = firebase.auth().onAuthStateChanged((user) => {
@@ -16,8 +17,18 @@ const currentUserReady = new Promise((res, rej) => {
 export const signIn = async () => {
   const currentUser = await getCurrentUser();
   if (currentUser === null) {
-    await firebase.auth().signInWithPopup(provider);
-    return findOrCreateUser(await getCurrentUser());
+    const { user, additionalUserInfo } = await firebase.auth().signInWithPopup(provider);
+
+    const { displayName, email, photoURL, uid } = user;
+    const { link } = additionalUserInfo.profile;
+
+    return findOrCreateUser({
+      displayName,
+      email,
+      photoURL,
+      uid,
+      link,
+    });
   } else {
     return currentUser;
   }
