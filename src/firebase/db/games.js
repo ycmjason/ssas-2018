@@ -53,3 +53,12 @@ export const createGame = async ({ title, description }) => {
   const game = await transformDocumentRef(gameRef);
   return transformGame(game);
 };
+
+export const joinGame = async (game, user) => {
+  game._ref.update({
+    participants: [
+      ...game.participants.map(({ _ref }) => _ref),
+      user._ref,
+    ],
+  });
+};

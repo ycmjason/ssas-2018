@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { signIn, signOut } from '../firebase/auth';
-import { findGamesForUser, createGame } from '@/firebase/db/games';
+import { signIn, signOut, getCurrentUser } from '../firebase/auth';
+import { findGamesForUser, createGame, joinGame } from '@/firebase/db/games';
 
 Vue.use(Vuex);
 
@@ -40,6 +40,10 @@ export default new Vuex.Store({
 
     async createGame (context, { title, description }) {
       return await createGame({ title, description });
+    },
+
+    async joinGame (context, game) {
+      await joinGame(game, await getCurrentUser());
     },
   },
 });

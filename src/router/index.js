@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Landing from '@/views/Landing.vue';
 import Dashboard from '@/views/Dashboard/index.vue';
 import CreateGame from '@/views/CreateGame.vue';
-import Game from '@/views/Game.vue';
+import Game from '@/views/Game/index.vue';
 
 import authGuard from './guards/authGuard';
 
