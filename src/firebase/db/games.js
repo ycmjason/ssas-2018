@@ -49,7 +49,19 @@ export const joinGame = async (game, user) => {
   });
 };
 
+export const leaveGame = async (game, user) => {
+  await game._ref.update({
+    participants: [
+      ...game.participants
+        .filter(({ uid }) => uid !== user.uid)
+        .map(({ _ref }) => _ref),
+    ],
+  });
+};
+
 export const setAllocation = async (game, allocation) => {
+  const currentUser = await getCurrentUser();
+  if (currentUser.uid !== game.creator.uid) return;
   await game._ref.update({
     allocation: allocation.map(({ from, to }) => ({ from: from._ref, to: to._ref })),
     'timestamps.allocation': getServerTimestamp(),

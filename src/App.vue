@@ -21,6 +21,9 @@ export default {
   --font-family-heading: 'Lora', serif;
   --font-family-body: 'Open Sans', sans-serif;
   --color-brand: #ff9021;
+  --color-brand-disabled: #ffbc7a;
+  --color-danger: #e00000;
+  --color-danger-disabled: #f28080;
   --color-brand-contrast: #fff;
   --color-border: #acacac;
 }
@@ -60,5 +63,18 @@ button, input[type=submit], input[type=button] {
   color: var(--color-brand-contrast);
   border: 0;
   cursor: pointer;
+
+  &:disabled {
+    background: var(--color-brand-disabled);
+    cursor: normal;
+  }
+
+  &.dangerBtn {
+    background: var(--color-danger);
+
+    &:disabled {
+      background: var(--color-danger-disabled);
+    }
+  }
 }
 </style>

@@ -2,7 +2,8 @@
   <Card v-bind="$attrs">
     <h3>You are the secret santa of</h3>
     <p v-if="!master" class="no_master">
-      No allocation yet. Please contact the host.
+      No allocation yet.
+      <template v-if="!isMaster">Please contact the host.</template>
     </p>
     <div v-else class="master_card_content">
       <img :src="`//graph.facebook.com/${master.fbid}/picture?type=large`">
@@ -13,7 +14,7 @@
 
 <script>
 export default {
-  props: ['master'],
+  props: ['master', 'isMaster'],
 };
 </script>
 

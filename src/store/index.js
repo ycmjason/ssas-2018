@@ -5,6 +5,7 @@ import {
   findGamesForUser,
   createGame,
   joinGame,
+  leaveGame,
   setAllocation,
   findGameById,
 } from '@/firebase/db/games';
@@ -27,7 +28,7 @@ export default new Vuex.Store({
     }),
     currentGame: ({ games, currentGameId }) => {
       if (!games) return null;
-      return games.find(({ id }) => currentGameId);
+      return games.find(({ id }) => currentGameId === id);
     },
   },
   mutations: {
@@ -94,8 +95,14 @@ export default new Vuex.Store({
       await dispatch('fetchGameById', game.id);
     },
 
-    async setAllocation (context, { game, allocation }) {
+    async setAllocation ({ dispatch }, { game, allocation }) {
       await setAllocation(game, allocation);
+      await dispatch('fetchGameById', game.id);
+    },
+
+    async leaveGame ({ dispatch }, game) {
+      await leaveGame(game, await getCurrentUser());
+      await dispatch('fetchGameById', game.id);
     },
   },
 });
