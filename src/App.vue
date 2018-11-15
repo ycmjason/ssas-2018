@@ -33,14 +33,20 @@ html {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-heading);
   font-style: italic;
+  line-height: 1.1rem;
 }
 
 *, *::before, *::after {
   box-sizing: border-box;
+  line-height: 1.5rem;
 }
 
 a {
   text-decoration: none;
+
+  &:visited {
+    color: #0000EE;
+  }
 }
 
 input, textarea {

@@ -20,13 +20,14 @@ export const signIn = async () => {
     const { user, additionalUserInfo } = await firebase.auth().signInWithPopup(provider);
 
     const { displayName, email, photoURL, uid } = user;
-    const { link } = additionalUserInfo.profile;
+    const { link, id: fbid } = additionalUserInfo.profile;
 
     return findOrCreateUser({
+      uid,
+      fbid,
       displayName,
       email,
       photoURL,
-      uid,
       link,
     });
   } else {

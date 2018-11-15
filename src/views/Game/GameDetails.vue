@@ -1,53 +1,24 @@
 <template>
   <div>
-    <main>
-      <Card class="participants_card">
-      <h3>Enrolled participants</h3>
-      <ul>
-        <li v-for="parti in game.participants" :key="parti.id">
-          <a class="profile_link" target="_blank" :href="parti.link">
-            <img :src="parti.photoURL">
-            {{ parti.displayName }}
-            <template v-if="parti.uid === game.creator.uid">(owner)</template>
-            <template v-if="parti.uid === user.uid">(you)</template>
-          </a>
-        </li>
-      </ul>
-      </Card>
-    </main>
+    <MasterCard :master="game.creator" class="master_card"/>
+    <ParticipantsCard
+        :participants="game.participants"
+        :creatorUid="game.creator.uid" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import MasterCard from '@/components/MasterCard.vue';
+import ParticipantsCard from '@/components/ParticipantsCard.vue';
 
 export default {
   props: ['game'],
-  computed: mapState(['user']),
+  components: { MasterCard, ParticipantsCard },
 };
 </script>
 
-<style lang="scss" scoped>
-.participants_card {
-  ul {
-    padding-left: 0;
-    margin-bottom: 0;
-  }
-
-  li {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-
-    .profile_link {
-      display: inline-flex;
-      align-items: center;
-    }
-
-    img {
-      margin-right: 1rem;
-    }
-  }
+<style scoped>
+.master_card {
+  margin-bottom: 1rem;
 }
 </style>

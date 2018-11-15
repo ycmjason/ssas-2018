@@ -13,8 +13,12 @@
 }
 
 .card > {
-  h1, h2, h3, h4, h5, h6 {
+  *:first-child {
     margin-top: 0;
+  }
+
+  *:last-child {
+    margin-bottom: 0;
   }
 }
 </style>
