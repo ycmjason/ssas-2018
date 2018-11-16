@@ -83,11 +83,10 @@ footer {
 .container {
   max-width: 1000px;
   min-height: 100vh;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.98);
   margin-left: auto;
   margin-right: auto;
-  background: rgba(255, 255, 255, 0.98);
 
   @media (min-width: 900px) {
     padding-left: 5rem;
