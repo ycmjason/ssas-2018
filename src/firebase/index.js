@@ -2,13 +2,18 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-firebase.initializeApp({
-  apiKey: 'AIzaSyBMIKS6wrlOUGmjrExUPF5Qk0-dG-sJth0',
-  authDomain: 'ssas-61724.firebaseapp.com',
-  databaseURL: 'https://ssas-61724.firebaseio.com',
-  projectId: 'ssas-61724',
-  storageBucket: 'ssas-61724.appspot.com',
-  messagingSenderId: '238339008983',
-});
+const config = {
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: `${process.env.VUE_APP_FIREBASE_PROJECT_ID}.firebaseapp.com`,
+  databaseURL: `https://${process.env.VUE_APP_FIREBASE_PROJECT_ID}.firebaseio.com`,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: `${process.envFIREBASE_PROJECT_ID}.appspot.com`,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+};
+
+console.log(process.env);
+console.log(config);
+
+firebase.initializeApp(config);
 
 export default firebase;

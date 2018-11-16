@@ -5,7 +5,7 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = process.env.NODE_ENV === 'development';
 
 Vue.filter('date', date => {
   if (!(date instanceof Date)) {
