@@ -5,10 +5,10 @@
       No allocation yet.
       <template v-if="!isMaster">Please contact the host.</template>
     </p>
-    <div v-else class="master_card_content">
+    <a v-else :href="master.link" class="master_link master_card_content" target="_blank">
       <img :src="`//graph.facebook.com/${master.fbid}/picture?type=large`">
       {{ master.displayName }}
-    </div>
+    </a>
   </Card>
 </template>
 
@@ -31,5 +31,9 @@ export default {
   img {
     margin-right: 2rem;
   }
+}
+
+.master_link {
+  color: black;
 }
 </style>
