@@ -51,6 +51,15 @@ export default {
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-top: 0;
+
+  &::after {
+    content: 'BETA';
+    font-size: 0.4em;
+    display: block;
+    align-self: flex-end;
+    margin-left: 5px;
+  }
 }
 
 .siteName {
