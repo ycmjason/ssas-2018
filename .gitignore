@@ -20,5 +20,4 @@ yarn-error.log*
 *.sln
 *.sw*
 
-.env
 .firebase

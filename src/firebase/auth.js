@@ -28,7 +28,7 @@ export const signIn = async () => {
       displayName,
       email,
       photoURL,
-      link,
+      link: link || `https://www.facebook.com/search/people/?q=${window.encodeURIComponent(displayName)}`,
     });
   } else {
     return currentUser;
