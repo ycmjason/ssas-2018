@@ -2,10 +2,13 @@
   <GiphyBackgroundLayout>
     <div class="container">
       <header>
-        <HomeLink to="/" tag="h1" class="siteName">
+        <HomeLink to="/" tag="h1" class="brand">
           <img src="@/assets/logo.svg" class="logo">
-          <div>
+          <div class="siteName">
             <u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem
+          </div>
+          <div class="siteName-short">
+            SSAS
           </div>
         </HomeLink>
       </header>
@@ -37,16 +40,31 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .logo {
   height: 1.5em;
   margin-right: 1rem;
+  display: block;
 }
 
-.siteName {
+.brand {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.siteName {
+  display: none;
+  &-short {
+    display: block;
+  }
+
+  @media (min-width: 900px) {
+    display: block;
+    &-short {
+      display: none;
+    }
+  }
 }
 
 footer {
@@ -56,10 +74,16 @@ footer {
 .container {
   max-width: 1000px;
   min-height: 100vh;
-  padding: 1px 5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   margin-left: auto;
   margin-right: auto;
   background: rgba(255, 255, 255, 0.98);
+
+  @media (min-width: 900px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 }
 
 .welcome-banner {
