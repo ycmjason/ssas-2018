@@ -6,10 +6,15 @@
 
 <script>
 export default {
+  props: {
+    returnTo: {
+      default: '/dashboard',
+    },
+  },
   methods: {
     async signIn () {
       if (await this.$store.dispatch('signIn')) {
-        this.$router.push('dashboard');
+        this.$router.push(this.returnTo);
       }
     },
   },

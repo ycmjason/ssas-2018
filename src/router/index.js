@@ -24,12 +24,12 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'landing',
+      name: 'Landing',
       component: Landing,
     },
     {
       path: '/dashboard',
-      name: 'dashboard',
+      name: 'Dashboard',
       component: Dashboard,
       beforeEnter: authGuard,
     },

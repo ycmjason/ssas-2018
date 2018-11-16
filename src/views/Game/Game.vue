@@ -11,6 +11,7 @@
       </header>
 
       <GameDetails :game="game" v-if="isParticipant" />
+      <GameEnded :game="game" v-else-if="game.allocation" />
       <GameJoin :game="game" v-else />
     </main>
   </MainLayout>
@@ -19,11 +20,13 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
 import GameDetails from './GameDetails.vue';
+import GameEnded from './GameEnded.vue';
 import GameJoin from './GameJoin.vue';
 
 export default {
   components: {
     GameDetails,
+    GameEnded,
     GameJoin,
   },
 

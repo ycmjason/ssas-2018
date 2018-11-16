@@ -67,7 +67,7 @@ button, input[type=submit], input[type=button] {
 
   &:disabled {
     background: var(--color-brand-disabled);
-    cursor: normal;
+    cursor: default;
   }
 
   &.dangerBtn {

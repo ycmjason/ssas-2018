@@ -18,7 +18,6 @@ export default {
         from: parti,
         to: shuffled[(i + 1) % shuffled.length],
       })));
-      this.allocating = false;
     },
   },
 };

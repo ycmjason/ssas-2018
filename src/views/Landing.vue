@@ -3,7 +3,9 @@
     <Card class="loginCard">
       <img class="logo" src="@/assets/logo.svg">
       <h1>SSAS</h1>
-      <FacebookSignIn />
+      <p v-if="query.returnTo && query.invite">Please login to join.</p>
+      <p v-else-if="query.returnTo">Please login to continue.</p>
+      <FacebookSignIn :returnTo="query.returnTo"/>
     </Card>
   </section>
 </template>
@@ -15,6 +17,9 @@ export default {
   name: 'landing',
   components: {
     FacebookSignIn,
+  },
+  computed: {
+    query: vm => vm.$route.query,
   },
 };
 </script>
@@ -38,7 +43,11 @@ export default {
   max-width: 500px;
 }
 
-h1 {
+h1, p {
   text-align: center;
+}
+
+p {
+  color: var(--color-danger);
 }
 </style>

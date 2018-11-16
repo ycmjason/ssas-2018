@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="actions">
-      <InviteLink :game="game" class="inviteLink" />
+      <InviteLink :game="game" class="inviteLink" :disabled="isAllocated" />
       <AllocateButton
           class="allocateButton"
           v-if="isMaster"

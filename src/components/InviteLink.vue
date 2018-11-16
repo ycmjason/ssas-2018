@@ -1,7 +1,7 @@
 <template>
   <div class="inputWrapper">
     <input class="input" type="text" :value="linkToGame" readonly ref="input">
-    <button @click="copy">{{ copied ? copiedLine : copyLine }}</button>
+    <button :disabled="$attrs.disabled" @click="copy">{{ copied ? copiedLine : copyLine }}</button>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   computed: {
     linkToGame () {
       const { protocol, host } = window.location;
-      return `${protocol}//${host}/game/${this.game.id}`;
+      return `${protocol}//${host}/game/${this.game.id}?invite=true`;
     },
   },
   methods: {
