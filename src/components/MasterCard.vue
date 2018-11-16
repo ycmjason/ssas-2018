@@ -2,8 +2,7 @@
   <Card v-bind="$attrs">
     <h3>You are the secret santa of</h3>
     <p v-if="!master" class="no_master">
-      No allocation yet.
-      <template v-if="!isMaster">Please contact the host.</template>
+      Waiting for everyone to join this game.
     </p>
     <a v-else :href="master.link" class="master_link master_card_content" target="_blank">
       <img :src="`//graph.facebook.com/${master.fbid}/picture?type=large`">
