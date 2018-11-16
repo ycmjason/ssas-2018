@@ -55,6 +55,7 @@ a {
 input, textarea {
   padding: 0.8rem;
   border: 1px solid var(--color-border);
+  line-height: inherit;
 }
 
 button, input[type=submit], input[type=button] {

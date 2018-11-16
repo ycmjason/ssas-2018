@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="actions">
+      <InviteLink :game="game" class="inviteLink" />
       <AllocateButton
           class="allocateButton"
           v-if="isMaster"
@@ -25,13 +26,20 @@
 import { mapState, mapActions } from 'vuex';
 
 import AllocateButton from '@/components/AllocateButton.vue';
+import InviteLink from '@/components/InviteLink.vue';
 import MasterCard from '@/components/MasterCard.vue';
 import ParticipantsCard from '@/components/ParticipantsCard.vue';
 import GameLeaveButton from './GameLeaveButton.vue';
 
 export default {
   props: ['game'],
-  components: { MasterCard, ParticipantsCard, AllocateButton, GameLeaveButton },
+  components: {
+    MasterCard,
+    ParticipantsCard,
+    AllocateButton,
+    GameLeaveButton,
+    InviteLink,
+  },
   computed: {
     ...mapState(['user']),
     yourMaster () {
@@ -59,6 +67,10 @@ export default {
 
 .actions {
   display: flex;
+
+  .inviteLink {
+    margin-right: 1rem;
+  }
 
   .gameLeaveButton {
     margin-left: auto;
