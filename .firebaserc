@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "ssas-2018"
+    "default": "ssas-2018",
+    "dev": "ssas-dev"
   }
 }
