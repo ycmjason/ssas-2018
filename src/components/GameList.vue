@@ -39,7 +39,6 @@ export default {
 }
 
 .gameCards {
-  cursor: pointer;
   display: grid;
   justify-items: stretch;
   align-items: stretch;
@@ -60,6 +59,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 .gameCard_footer ul {
