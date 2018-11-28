@@ -12,6 +12,7 @@
           </div>
         </HomeLink>
       </header>
+      <FacebookLike />
 
       <main>
         <header class="welcome-banner" v-if="user">
@@ -43,12 +44,16 @@
 import { mapState } from 'vuex';
 import { version } from '@/../package.json';
 
-import GiphyBackgroundLayout from './GiphyBackgroundLayout.vue';
 import SignOut from '@/components/SignOut';
 import FeedbackButton from '@/components/FeedbackButton';
+import FacebookLike from '@/components/FacebookLike';
 
 export default {
-  components: { GiphyBackgroundLayout, SignOut, FeedbackButton },
+  components: {
+    SignOut,
+    FeedbackButton,
+    FacebookLike,
+  },
   data: () => ({ version }),
   computed: mapState(['user']),
 };
