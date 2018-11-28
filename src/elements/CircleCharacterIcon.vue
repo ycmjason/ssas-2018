@@ -12,8 +12,9 @@
   font-size: 1rem;
   display: block;
   border-radius: 50%;
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1rem;
+  height: 1rem;
+  line-height: 0;
   color: var(--color-border);
   border: 1px solid var(--color-border);
   box-sizing: content-box;

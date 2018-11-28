@@ -1,12 +1,20 @@
 <template>
   <div @click="back">
-    <CircleCharacterIcon>&lt;</CircleCharacterIcon>
+    <CircleCharacterIcon class="backIcon">&lt;</CircleCharacterIcon> {{ label }}
   </div>
 </template>
 
 <script>
 export default {
-  props: ['to'],
+  props: {
+    to: {
+      type: String,
+    },
+    label: {
+      type: String,
+      default: 'Back',
+    },
+  },
   methods: {
     back () {
       if (!this.to) this.$router.go(-1);
@@ -17,8 +25,15 @@ export default {
 </script>
 
 <style scoped>
+.backIcon.backIcon {
+  border-color: var(--color-link);
+  color: var(--color-link);
+  margin-right: 3px;
+}
+
 div {
   cursor: pointer;
   display: inline;
+  color: var(--color-link);
 }
 </style>

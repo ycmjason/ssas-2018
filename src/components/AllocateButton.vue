@@ -1,5 +1,5 @@
 <template>
-  <button @click="allocate" :disabled="allocating">Allocate</button>
+  <button @click="allocate" :disabled="allocating">allocate</button>
 </template>
 
 <script>

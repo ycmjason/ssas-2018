@@ -26,6 +26,7 @@ export default {
   --color-danger-disabled: #f28080;
   --color-brand-contrast: #fff;
   --color-border: #acacac;
+  --color-link: #0000EE;
 }
 
 html {
@@ -48,7 +49,7 @@ a {
   text-decoration: none;
 
   &:visited {
-    color: #0000EE;
+    color: var(--color-link);
   }
 }
 
