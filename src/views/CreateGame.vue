@@ -1,5 +1,6 @@
 <template>
   <MainLayout>
+    <Back to="/dashboard" label="View all games" />
     <h2>Create new game</h2>
     <Survey :fields="fields" @submit="createGame" />
   </MainLayout>

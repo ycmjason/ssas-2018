@@ -22,7 +22,17 @@
       </main>
 
       <footer>
-        &copy; Jason Yu 2018
+        &copy;&nbsp;
+        <ExternalLink href="https://www.ycmjason.com" b="hi">
+          Jason Yu
+        </ExternalLink>
+        &nbsp;2018
+        <a
+            href="https://github.com/ycmjason/ssas-2018"
+            class="version"
+            target="_blank">
+          version {{ version }}
+        </a>
       </footer>
     </div>
   </GiphyBackgroundLayout>
@@ -30,12 +40,14 @@
 
 <script>
 import { mapState } from 'vuex';
+import { version } from '@/../package.json';
 
 import GiphyBackgroundLayout from './GiphyBackgroundLayout.vue';
 import SignOut from '@/components/SignOut';
 
 export default {
   components: { GiphyBackgroundLayout, SignOut },
+  data: () => ({ version }),
   computed: mapState(['user']),
 };
 </script>
@@ -78,6 +90,11 @@ export default {
 
 footer {
   padding-top: 1rem;
+  display: flex;
+}
+
+.version {
+  margin-left: auto;
 }
 
 .container {

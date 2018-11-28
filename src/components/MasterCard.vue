@@ -4,10 +4,10 @@
     <p v-if="!master" class="no_master">
       Waiting for everyone to join this game.
     </p>
-    <a v-else :href="master.link" class="master_link master_card_content" target="_blank">
+    <ExternalLink v-else :href="master.link" class="master_card_content">
       <img :src="`//graph.facebook.com/${master.fbid}/picture?type=large`">
       {{ master.displayName }}
-    </a>
+    </ExternalLink>
   </Card>
 </template>
 
@@ -30,9 +30,5 @@ export default {
   img {
     margin-right: 2rem;
   }
-}
-
-.master_link {
-  color: black;
 }
 </style>

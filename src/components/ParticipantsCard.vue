@@ -3,12 +3,12 @@
     <h3>Enrolled participants ({{ participants.length }})</h3>
     <ul>
       <li v-for="parti in participants" :key="parti.id">
-        <a class="profile_link" target="_blank" :href="parti.link">
+        <ExternalLink class="profile_link" :href="parti.link">
           <img class="profile_picture" :src="parti.photoURL">
           {{ parti.displayName }}
           <template v-if="parti.uid === creatorUid"> (owner)</template>
           <template v-if="parti.uid === user.uid"> (you)</template>
-        </a>
+        </ExternalLink>
       </li>
     </ul>
   </Card>
