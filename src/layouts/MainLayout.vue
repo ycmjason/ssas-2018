@@ -35,6 +35,7 @@
         </a>
       </footer>
     </div>
+    <FeedbackButton />
   </GiphyBackgroundLayout>
 </template>
 
@@ -44,9 +45,10 @@ import { version } from '@/../package.json';
 
 import GiphyBackgroundLayout from './GiphyBackgroundLayout.vue';
 import SignOut from '@/components/SignOut';
+import FeedbackButton from '@/components/FeedbackButton';
 
 export default {
-  components: { GiphyBackgroundLayout, SignOut },
+  components: { GiphyBackgroundLayout, SignOut, FeedbackButton },
   data: () => ({ version }),
   computed: mapState(['user']),
 };

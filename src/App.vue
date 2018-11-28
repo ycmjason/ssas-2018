@@ -59,7 +59,7 @@ input, textarea {
   line-height: inherit;
 }
 
-button, input[type=submit], input[type=button] {
+.btn, button, input[type=submit], input[type=button] {
   padding: 0.8rem;
   background: var(--color-brand);
   color: var(--color-brand-contrast);
@@ -71,7 +71,17 @@ button, input[type=submit], input[type=button] {
     cursor: default;
   }
 
-  &.dangerBtn {
+  &.btnInversed {
+    background: var(--color-brand-contrast);
+    border: 1px solid var(--color-brand);
+    color: var(--color-brand);
+
+    &:disabled {
+      background: var(--color-brand);
+    }
+  }
+
+  &.btnDanger {
     background: var(--color-danger);
 
     &:disabled {

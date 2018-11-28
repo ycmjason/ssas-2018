@@ -1,5 +1,5 @@
 <template>
-  <button @click="leave" :disabled="leaving" class="dangerBtn">leave the game</button>
+  <button @click="leave" :disabled="leaving" class="btnDanger">leave the game</button>
 </template>
 
 <script>
