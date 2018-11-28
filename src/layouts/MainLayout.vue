@@ -114,14 +114,10 @@ footer {
   background: rgba(255, 255, 255, 0.98);
   margin-left: auto;
   margin-right: auto;
-  border-left: 5px solid var(--color-brand);
-  border-right: 5px solid var(--color-brand);
 
   @media (min-width: 900px) {
     padding-left: 4rem;
     padding-right: 4rem;
-    border-left-width: 1rem;
-    border-right-width: 1rem;
   }
 }
 
