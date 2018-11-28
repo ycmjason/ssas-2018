@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.2.3
+- Used facebook page plugin for liking
+
 ## v0.2.2
 - Used iframe for facebook like 
 - Master card become responsive
