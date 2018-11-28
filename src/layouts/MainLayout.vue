@@ -116,4 +116,8 @@ footer {
   justify-content: space-between;
   align-items: center;
 }
+
+a {
+  color: black;
+}
 </style>

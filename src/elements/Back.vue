@@ -26,8 +26,6 @@ export default {
 
 <style scoped>
 .backIcon.backIcon {
-  border-color: var(--color-link);
-  color: var(--color-link);
   margin-right: 3px;
 }
 

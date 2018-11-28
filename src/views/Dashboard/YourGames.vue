@@ -4,6 +4,7 @@
       <h2>Your Games</h2>
       <router-link :to="{ name: 'CreateGame' }" class="createNewGame" title="Create new game">
         <CircleCharacterIcon>+</CircleCharacterIcon>
+        Create new game
       </router-link>
     </header>
 
@@ -36,12 +37,9 @@ export default {
 </script>
 
 <style scoped>
-header {
-  display: flex;
-  align-items: baseline;
-}
-
 .createNewGame {
-  margin-left: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: block;
 }
 </style>
