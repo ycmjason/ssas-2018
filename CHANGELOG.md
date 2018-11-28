@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.2.2
+- Used iframe for facebook like 
+- Master card become responsive
+- Hide feedback form for mobile
+
 ## v0.2.1
 - Added changelog
 
