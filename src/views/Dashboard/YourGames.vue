@@ -2,10 +2,12 @@
   <section class="yourGames">
     <header>
       <h2>Your Games</h2>
-      <router-link :to="{ name: 'CreateGame' }" class="createNewGame" title="Create new game">
-        <CircleCharacterIcon>+</CircleCharacterIcon>
-        Create new game
-      </router-link>
+      <div class="createNewGame_wrapper">
+        <router-link :to="{ name: 'CreateGame' }" class="createNewGame" title="Create new game">
+          <CircleCharacterIcon>+</CircleCharacterIcon>
+          Create new game
+        </router-link>
+      </div>
     </header>
 
     <GameList :games="myGames" />
@@ -37,9 +39,8 @@ export default {
 </script>
 
 <style scoped>
-.createNewGame {
+.createNewGame_wrapper {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  display: block;
 }
 </style>

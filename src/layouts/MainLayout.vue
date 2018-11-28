@@ -24,16 +24,15 @@
 
       <footer>
         &copy;&nbsp;
-        <ExternalLink href="https://www.ycmjason.com" b="hi">
+        <ExternalLink href="https://www.ycmjason.com">
           Jason Yu
         </ExternalLink>
         &nbsp;2018
-        <a
+        <ExternalLink
             href="https://github.com/ycmjason/ssas-2018"
-            class="version"
-            target="_blank">
+            class="version">
           version {{ version }}
-        </a>
+        </ExternalLink>
       </footer>
     </div>
     <FeedbackButton />
@@ -98,6 +97,10 @@ export default {
 footer {
   padding-top: 1rem;
   display: flex;
+
+  a {
+    color: #00A;
+  }
 }
 
 .version {
@@ -111,10 +114,14 @@ footer {
   background: rgba(255, 255, 255, 0.98);
   margin-left: auto;
   margin-right: auto;
+  border-left: 5px solid var(--color-brand);
+  border-right: 5px solid var(--color-brand);
 
   @media (min-width: 900px) {
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    border-left-width: 1rem;
+    border-right-width: 1rem;
   }
 }
 
@@ -122,9 +129,5 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-a {
-  color: black;
 }
 </style>

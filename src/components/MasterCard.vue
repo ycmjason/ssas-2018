@@ -25,10 +25,20 @@ export default {
 
 .master_card_content {
   display: flex;
+  flex-direction: column;
   align-items: center;
 
   img {
-    margin-right: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+
+    img {
+      margin-right: 2rem;
+      margin-bottom: 0;
+    }
   }
 }
 </style>

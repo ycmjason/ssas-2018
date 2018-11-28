@@ -26,7 +26,12 @@ export default {
   transition: transform 0.3s;;
 
   &.show {
-    transform: none;
+    transform: translateX(2rem) translateX(100%);
+
+    @media (min-width: 900px) {
+      transform: none;
+    }
   }
+
 }
 </style>
