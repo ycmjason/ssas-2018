@@ -9,7 +9,9 @@
     "predeploy": "npm run build",
     "deploy": "firebase -P default deploy",
     "predeploy:dev": "npm run build -- --mode development",
-    "deploy:dev": "firebase -P dev deploy"
+    "deploy:dev": "firebase -P dev deploy",
+    "preversion": "$EDITOR CHANGELOG.md",
+    "version": "git add -A"
   },
   "dependencies": {
     "firebase": "^5.5.8",
