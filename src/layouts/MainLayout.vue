@@ -12,7 +12,6 @@
           </div>
         </HomeLink>
       </header>
-      <FacebookLike />
 
       <main>
         <header class="welcome-banner" v-if="user">
@@ -34,6 +33,8 @@
           version {{ version }}
         </ExternalLink>
       </footer>
+
+      <FacebookLike />
     </div>
     <FeedbackButton />
   </GiphyBackgroundLayout>
@@ -96,6 +97,7 @@ export default {
 
 footer {
   padding-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
 
   a {
