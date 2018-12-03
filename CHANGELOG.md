@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.3.0
+- Enabled Google login
+
 ## v0.2.3
 - Used facebook page plugin for liking
 
