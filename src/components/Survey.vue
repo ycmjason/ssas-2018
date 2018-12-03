@@ -45,7 +45,7 @@ const resolveValidator = (field) => {
   if (typeof validator === 'function') return validator;
   if (typeof validator === 'string') {
     if (!(validator in PRESET_VALIDATORS)) {
-      console.error('Cannot find validator in preset');
+      throw Error('Cannot find validator in preset');
     }
     return PRESET_VALIDATORS[validator];
   }
@@ -97,7 +97,6 @@ export default {
         if (fields[key].required && !values[key]) return;
         try {
           const validator = resolveValidator(fields[key]);
-          console.log(validator, fields[key].validator);
           if (!validator(values[key])) throw new Error('This is not valid.');
         } catch ({ message }) {
           errors[key] = message;
