@@ -1,6 +1,18 @@
 # ssas-2018
 
+[![Build Status](https://travis-ci.com/ycmjason/ssas-2018.svg?branch=master)](https://travis-ci.com/ycmjason/ssas-2018)
+
 ## Project setup
+Create a file `.env.development.local` with the following firebase variables set:
+```
+VUE_APP_FIREBASE_PROJECT_ID=[your firebase project id]
+VUE_APP_FIREBASE_API_KEY=[your firebase API key]
+VUE_APP_FIREBASE_MESSAGING_SENDER_ID=[your messaging sender id]
+```
+
+You can create a firebase project easily [here](https://firebase.google.com/).
+
+Install all dependencies with
 ```
 npm install
 ```
@@ -16,14 +28,12 @@ npm run build
 ```
 
 ### Run your tests
-```
-npm run test
-```
+No test is written yet. Still in Beta, major changes might be introduced.
 
 ### Lints and fixes files
 ```
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Author
+Jason Yu
