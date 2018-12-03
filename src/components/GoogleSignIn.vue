@@ -1,6 +1,6 @@
 <template>
   <button @click="signIn">
-    Continue with Facebook
+    Sign in with Google
   </button>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     async signIn () {
-      if (await this.$store.dispatch('signInWithFacebook')) {
+      if (await this.$store.dispatch('signInWithGoogle')) {
         this.$router.push(this.returnTo);
       }
     },
@@ -23,8 +23,8 @@ export default {
 
 <style scoped>
 button {
-  background: #4267B2;
-  color: white;
+  background: #4285F4;
+  color: #ffffff;
   padding: 0.8rem;
   display: block;
   width: 100%;

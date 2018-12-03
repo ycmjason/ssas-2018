@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { signIn, signOut, getCurrentUser } from '../firebase/auth';
+import { signInWithFacebook, signInWithGoogle, signOut, getCurrentUser } from '../firebase/auth';
 import {
   findGamesForUser,
   createGame,
@@ -43,8 +43,14 @@ export default new Vuex.Store({
     clearGames: state => state.games = null,
   },
   actions: {
-    async signIn ({ commit }) {
-      const user = await signIn();
+    async signInWithGoogle ({ commit }) {
+      const user = await signInWithGoogle();
+      commit('setUser', user);
+      return user;
+    },
+
+    async signInWithFacebook ({ commit }) {
+      const user = await signInWithFacebook();
       commit('setUser', user);
       return user;
     },

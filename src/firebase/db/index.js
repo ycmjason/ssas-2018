@@ -33,6 +33,8 @@ export const executeQuery = async query => {
 };
 
 export const transformValue = async v => {
+  if (!v) return v;
+
   if (v instanceof firebase.firestore.DocumentReference) {
     return await transformDocumentRef(v);
   }
