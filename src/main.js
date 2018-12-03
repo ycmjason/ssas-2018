@@ -9,7 +9,7 @@ Vue.config.productionTip = process.env.NODE_ENV === 'development';
 
 Vue.filter('date', date => {
   if (!(date instanceof Date)) {
-    console.error(`${date} is not an instane of Date`);
+    new Error(`${date} is not an instane of Date`);
     return date;
   }
 
