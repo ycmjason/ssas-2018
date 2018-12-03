@@ -5,7 +5,7 @@
       Waiting for everyone to join this game.
     </p>
     <ExternalLink v-else :href="master.link" class="master_card_content">
-      <img :src="`//graph.facebook.com/${master.fbid}/picture?type=large`">
+      <img :src="imgSrc">
       {{ master.displayName }}
     </ExternalLink>
   </Card>
@@ -14,6 +14,20 @@
 <script>
 export default {
   props: ['master', 'isMaster'],
+  computed: {
+    imgSrc () {
+      const { master } = this;
+      if (master.fbid) {
+        return `//graph.facebook.com/${master.fbid}/picture?type=large`;
+      }
+
+      if (master.gid) {
+        return master.photoURL;
+      }
+
+      return 'https://dummyimage.com/200x200/efefef/000';
+    },
+  },
 };
 </script>
 
@@ -30,6 +44,7 @@ export default {
 
   img {
     margin-bottom: 1rem;
+    max-width: 200px;
   }
 
   @media (min-width: 900px) {
