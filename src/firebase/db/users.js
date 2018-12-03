@@ -29,16 +29,12 @@ const updateUser = async (user) => {
 
   const fieldsToBeUpdated = [
     'email',
-    'fbid',
-    'gid',
     'link',
     'photoURL',
   ].filter(f => {
     if (!(f in user)) return false;
     return foundUser[f] !== user[f];
   });
-  console.log(user, foundUser);
-  console.log(fieldsToBeUpdated);
 
   if (fieldsToBeUpdated.length > 0) {
     foundUser._ref.update({

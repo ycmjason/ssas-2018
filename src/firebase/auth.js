@@ -3,51 +3,64 @@ import { findUserByUid, createOrUpdateUser } from './db/users';
 
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
+const signInWith = async (providerName) => {
+  const provider = (() => {
+    if (providerName === 'google') {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('email');
+      return provider;
+    }
+
+    if (providerName === 'facebook') {
+      const provider = new firebase.auth.FacebookAuthProvider();
+      provider.addScope('email');
+      provider.addScope('user_link');
+      return provider;
+    }
+
+    throw Error(`Unknown provider: ${providerName}`);
+  })();
+  const { user, additionalUserInfo } = await firebase.auth().signInWithPopup(provider);
+
+  const { displayName, photoURL, uid } = user;
+  const { link, id } = additionalUserInfo.profile;
+
+  const email = user.email || additionalUserInfo.profile.email;
+
+  const providerIdField = (() => {
+    if (providerName === 'google') {
+      return 'gid';
+    }
+
+    if (providerName === 'facebook') {
+      return 'fbid';
+    }
+
+    throw Error(`Unknown provider: ${providerName}`);
+  })();
+
+  return createOrUpdateUser({
+    uid,
+    [providerIdField]: id,
+    displayName,
+    email,
+    photoURL,
+    link,
+  });
+};
+
 export const signInWithGoogle = async () => {
   const currentUser = await getCurrentUser();
-  if (currentUser === null) {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const a = await firebase.auth().signInWithPopup(provider);
-    const { user, additionalUserInfo } = a;
+  if (currentUser) return currentUser;
 
-    const { displayName, email, photoURL, uid } = user;
-    const { link, id: gid } = additionalUserInfo.profile;
-
-    return createOrUpdateUser({
-      uid,
-      gid,
-      displayName,
-      email,
-      photoURL,
-      link,
-    });
-  } else {
-    return currentUser;
-  }
+  return await signInWith('google');
 };
 
 export const signInWithFacebook = async () => {
   const currentUser = await getCurrentUser();
-  if (currentUser === null) {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    provider.addScope('email');
-    provider.addScope('user_link');
-    const { user, additionalUserInfo } = await firebase.auth().signInWithPopup(provider);
+  if (currentUser) return currentUser;
 
-    const { displayName, email, photoURL, uid } = user;
-    const { link, id: fbid } = additionalUserInfo.profile;
-
-    return createOrUpdateUser({
-      uid,
-      fbid,
-      displayName,
-      email,
-      photoURL,
-      link: link || `https://www.facebook.com/search/people/?q=${window.encodeURIComponent(displayName)}`,
-    });
-  } else {
-    return currentUser;
-  }
+  return await signInWith('facebook');
 };
 
 export const signOut = async () => await firebase.auth().signOut();
