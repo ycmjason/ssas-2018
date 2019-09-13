@@ -8,7 +8,7 @@
     </Card>
     <p>Here is a little video for you to enjoy:</p>
     <Card class="late_santa">
-      <img src="https://media.giphy.com/media/3o6ZtnGrjdCl0VoCCA/giphy.gif">
+      <img src="https://media.giphy.com/media/3o6ZtnGrjdCl0VoCCA/giphy.gif" />
     </Card>
   </main>
 </template>

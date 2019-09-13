@@ -1,7 +1,4 @@
-import db, {
-  getServerTimestamp,
-  transformDocumentRef,
-} from './index';
+import db, { getServerTimestamp, transformDocumentRef } from './index';
 
 const usersRef = db.collection('users');
 
@@ -21,27 +18,26 @@ export const createOrUpdateUser = async user => {
   return createUser(user);
 };
 
-const updateUser = async (user) => {
+const updateUser = async user => {
   const foundUser = await findUserByUid(user.uid);
   if (!foundUser) {
     throw Error(`updateUser: No user (${user.uid}) found`);
   }
 
-  const fieldsToBeUpdated = [
-    'email',
-    'link',
-    'photoURL',
-  ].filter(f => {
+  const fieldsToBeUpdated = ['email', 'link', 'photoURL'].filter(f => {
     if (!(f in user)) return false;
     return foundUser[f] !== user[f];
   });
 
   if (fieldsToBeUpdated.length > 0) {
     foundUser._ref.update({
-      ...fieldsToBeUpdated.reduce((acc, f) => ({
-        ...acc,
-        [f]: user[f],
-      }), {}),
+      ...fieldsToBeUpdated.reduce(
+        (acc, f) => ({
+          ...acc,
+          [f]: user[f],
+        }),
+        {},
+      ),
       'timestamps.updated': getServerTimestamp(),
     });
   }

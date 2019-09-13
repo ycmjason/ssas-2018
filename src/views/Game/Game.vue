@@ -5,7 +5,7 @@
       <header>
         <Back to="/dashboard" label="View all games" />
         <h2>
-          {{ game.title }} <span class="createdBy">(created by {{creatorsName}})</span>
+          {{ game.title }} <span class="createdBy">(created by {{ creatorsName }})</span>
         </h2>
         <p>{{ game.description }}</p>
       </header>
@@ -30,7 +30,7 @@ export default {
     GameJoin,
   },
 
-  async created () {
+  async created() {
     await this.setCurrentGameId(this.id);
     if (!this.game) this.$router.replace('/404');
   },
@@ -42,7 +42,7 @@ export default {
   },
 
   computed: {
-    creatorsName () {
+    creatorsName() {
       if (!this.game) return '';
 
       if (this.game.creator.uid === this.user.uid) {
@@ -51,7 +51,7 @@ export default {
 
       return this.game.creator.displayName;
     },
-    isParticipant () {
+    isParticipant() {
       if (!this.game) return false;
       return this.game.participants.map(({ uid }) => uid).includes(this.user.uid);
     },

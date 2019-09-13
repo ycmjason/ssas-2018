@@ -1,6 +1,6 @@
 <template>
   <div class="inputWrapper">
-    <input class="input" type="text" :value="linkToGame" readonly ref="input">
+    <input class="input" type="text" :value="linkToGame" readonly ref="input" />
     <button :disabled="$attrs.disabled" @click="copy">{{ copied ? copiedLine : copyLine }}</button>
   </div>
 </template>
@@ -15,18 +15,18 @@ export default {
     timeoutId: null,
   }),
   computed: {
-    linkToGame () {
+    linkToGame() {
       const { protocol, host } = window.location;
       return `${protocol}//${host}/game/${this.game.id}?invite=true`;
     },
   },
   methods: {
-    copy () {
+    copy() {
       clearTimeout(this.timeoutId);
       this.$refs.input.select();
       document.execCommand('copy');
       this.copied = true;
-      this.timeoutId = setTimeout(() => this.copied = false, 500);
+      this.timeoutId = setTimeout(() => (this.copied = false), 500);
     },
   },
 };

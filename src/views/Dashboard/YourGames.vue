@@ -26,7 +26,7 @@ export default {
   },
   watch: {
     user: {
-      handler () {
+      handler() {
         this.$store.dispatch('fetchMyGames');
       },
       immediate: true,

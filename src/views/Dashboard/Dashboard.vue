@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import YourGames from './YourGames.vue';
 
 export default {
@@ -16,5 +15,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -4,10 +4,14 @@
     <ul>
       <li v-for="parti in participants" :key="parti.id">
         <ExternalLink class="profile_link" :href="parti.link">
-          <img class="profile_picture" :src="parti.photoURL">
+          <img class="profile_picture" :src="parti.photoURL" />
           {{ parti.displayName }}
-          <template v-if="parti.uid === creatorUid"> (owner)</template>
-          <template v-if="parti.uid === user.uid"> (you)</template>
+          <template v-if="parti.uid === creatorUid">
+            (owner)</template
+          >
+          <template v-if="parti.uid === user.uid">
+            (you)</template
+          >
         </ExternalLink>
       </li>
     </ul>

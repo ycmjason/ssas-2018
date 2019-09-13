@@ -15,7 +15,7 @@ Vue.use(Vuex);
 
 const uniqById = xs => uniqBy(xs, ({ id }) => id);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     user: null,
     games: null,
@@ -23,44 +23,46 @@ export default new Vuex.Store({
   },
   getters: {
     isSignedIn: ({ user }) => !!user,
-    myGames: ({ user, games }) => games && games.filter(({ participants }) => {
-      return participants.map(({ uid }) => uid).includes(user.uid);
-    }),
+    myGames: ({ user, games }) =>
+      games &&
+      games.filter(({ participants }) => {
+        return participants.map(({ uid }) => uid).includes(user.uid);
+      }),
     currentGame: ({ games, currentGameId }) => {
       if (!games) return null;
       return games.find(({ id }) => currentGameId === id);
     },
   },
   mutations: {
-    setUser: (state, user) => state.user = user,
-    setCurrentGameId: (state, id) => state.currentGameId = id,
+    setUser: (state, user) => (state.user = user),
+    setCurrentGameId: (state, id) => (state.currentGameId = id),
     addGame: (state, game) => {
       state.games = uniqById([game, ...(state.games || [])]);
     },
     addGames: (state, games) => {
       state.games = uniqById([...games, ...(state.games || [])]);
     },
-    clearGames: state => state.games = null,
+    clearGames: state => (state.games = null),
   },
   actions: {
-    async signInWithGoogle ({ commit }) {
+    async signInWithGoogle({ commit }) {
       const user = await signInWithGoogle();
       commit('setUser', user);
       return user;
     },
 
-    async signInWithFacebook ({ commit }) {
+    async signInWithFacebook({ commit }) {
       const user = await signInWithFacebook();
       commit('setUser', user);
       return user;
     },
 
-    async signOut ({ commit }) {
+    async signOut({ commit }) {
       await signOut();
       commit('setUser', null);
     },
 
-    async fetchMyGames ({ state, getters, commit }) {
+    async fetchMyGames({ state, getters, commit }) {
       if (!getters.isSignedIn) {
         return commit('clearGames');
       }
@@ -69,7 +71,7 @@ export default new Vuex.Store({
       return games;
     },
 
-    async fetchGameById ({ state, commit }, id) {
+    async fetchGameById({ state, commit }, id) {
       const game = await findGameById(id);
       commit('addGame', game);
       if (state.currentGameId && state.currentGameId === id) {
@@ -78,12 +80,12 @@ export default new Vuex.Store({
       return game;
     },
 
-    async setCurrentGameId ({ dispatch, commit }, id) {
+    async setCurrentGameId({ dispatch, commit }, id) {
       await dispatch('getGameById', id);
       commit('setCurrentGameId', id);
     },
 
-    async getGameById ({ state, dispatch }, id) {
+    async getGameById({ state, dispatch }, id) {
       if (state.games) {
         const found = state.games.find(game => game.id === id);
         if (found) return found;
@@ -92,23 +94,34 @@ export default new Vuex.Store({
       return await dispatch('fetchGameById', id);
     },
 
-    async createGame (context, { title, description }) {
+    async createGame(context, { title, description }) {
       return await createGame({ title, description });
     },
 
-    async joinGame ({ dispatch }, game) {
+    async joinGame({ dispatch }, game) {
       await joinGame(game, await getCurrentUser());
       await dispatch('fetchGameById', game.id);
     },
 
-    async setAllocation ({ dispatch }, { game, allocation }) {
+    async setAllocation({ dispatch }, { game, allocation }) {
       await setAllocation(game, allocation);
       await dispatch('fetchGameById', game.id);
     },
 
-    async leaveGame ({ dispatch }, game) {
+    async leaveGame({ dispatch }, game) {
       await leaveGame(game, await getCurrentUser());
       await dispatch('fetchGameById', game.id);
     },
   },
 });
+
+store.watch(
+  ({ user }) => user,
+  user => {
+    if (!user.uid) {
+      store.dispatch('signOut');
+    }
+  },
+);
+
+export default store;

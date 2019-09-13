@@ -3,10 +3,8 @@
     <div class="container">
       <header>
         <HomeLink to="/" tag="h1" class="brand">
-          <img src="@/assets/logo.svg" class="logo">
-          <div class="siteName">
-            <u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem
-          </div>
+          <img src="@/assets/logo.svg" class="logo" />
+          <div class="siteName"><u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem</div>
           <div class="siteName-short">
             SSAS
           </div>
@@ -27,9 +25,7 @@
           Jason Yu
         </ExternalLink>
         &nbsp;2018
-        <ExternalLink
-            href="https://github.com/ycmjason/ssas-2018"
-            class="version">
+        <ExternalLink href="https://github.com/ycmjason/ssas-2018" class="version">
           version {{ version }}
         </ExternalLink>
       </footer>
@@ -101,7 +97,7 @@ footer {
   display: flex;
 
   a {
-    color: #00A;
+    color: #00a;
   }
 }
 

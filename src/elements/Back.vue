@@ -16,7 +16,7 @@ export default {
     },
   },
   methods: {
-    back () {
+    back() {
       if (!this.to) this.$router.go(-1);
       this.$router.push(this.to);
     },

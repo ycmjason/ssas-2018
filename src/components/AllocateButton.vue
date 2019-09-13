@@ -11,13 +11,16 @@ export default {
     allocating: false,
   }),
   methods: {
-    allocate () {
+    allocate() {
       this.allocating = true;
       const shuffled = sort(this.participants, () => Math.random() - 0.5);
-      this.$emit('allocated', shuffled.map((parti, i) => ({
-        from: parti,
-        to: shuffled[(i + 1) % shuffled.length],
-      })));
+      this.$emit(
+        'allocated',
+        shuffled.map((parti, i) => ({
+          from: parti,
+          to: shuffled[(i + 1) % shuffled.length],
+        })),
+      );
     },
   },
 };

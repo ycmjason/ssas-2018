@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { getCurrentUser } from '@/firebase/auth';
 
 export default {
-  async created () {
+  async created() {
     this.$store.commit('setUser', await getCurrentUser());
   },
 };
@@ -26,7 +26,7 @@ export default {
   --color-danger-disabled: #f28080;
   --color-brand-contrast: #fff;
   --color-border: #acacac;
-  --color-link: #0000EE;
+  --color-link: #0000ee;
 }
 
 html {
@@ -34,13 +34,20 @@ html {
   font-family: var(--font-family-body);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-family-heading);
   font-style: italic;
   line-height: 1.1rem;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   line-height: 1.5rem;
 }
@@ -54,13 +61,17 @@ a {
   }
 }
 
-input, textarea {
+input,
+textarea {
   padding: 0.8rem;
   border: 1px solid var(--color-border);
   line-height: inherit;
 }
 
-.btn, button, input[type=submit], input[type=button] {
+.btn,
+button,
+input[type='submit'],
+input[type='button'] {
   padding: 0.8rem;
   background: var(--color-brand);
   color: var(--color-brand-contrast);

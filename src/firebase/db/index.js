@@ -2,8 +2,6 @@ import firebase from '../index';
 
 const db = firebase.firestore();
 
-db.settings({ timestampsInSnapshots: true });
-
 export default db;
 
 export const getServerTimestamp = () => firebase.firestore.FieldValue.serverTimestamp();
@@ -56,11 +54,14 @@ export const transformValue = async v => {
 
 export const transformMap = async map => {
   return (await Promise.all(
-    Object.entries(map).map(async ([k, v]) => [k, await transformValue(v)])
-  )).reduce((newMap, [k, v]) => ({
-    ...newMap,
-    [k]: v,
-  }), {});
+    Object.entries(map).map(async ([k, v]) => [k, await transformValue(v)]),
+  )).reduce(
+    (newMap, [k, v]) => ({
+      ...newMap,
+      [k]: v,
+    }),
+    {},
+  );
 };
 
 export const transformDocumentRef = async docRef => {

@@ -12,7 +12,7 @@ export default {
     },
   },
   methods: {
-    async signIn () {
+    async signIn() {
       if (await this.$store.dispatch('signInWithGoogle')) {
         this.$router.push(this.returnTo);
       }
@@ -23,7 +23,7 @@ export default {
 
 <style scoped>
 button {
-  background: #4285F4;
+  background: #4285f4;
   color: #ffffff;
   padding: 0.8rem;
   display: block;

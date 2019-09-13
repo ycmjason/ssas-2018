@@ -2,7 +2,7 @@
   <Card>
     <div>
       <p>
-      You have been invited to join this secret santa game. Do you wish to join?
+        You have been invited to join this secret santa game. Do you wish to join?
       </p>
 
       <button @click="join" :disabled="joining">Join now</button>
@@ -17,7 +17,7 @@ export default {
     joining: false,
   }),
   methods: {
-    async join () {
+    async join() {
       if (!this.game) throw Error('No game is passed');
       this.joining = true;
       await this.$store.dispatch('joinGame', this.game);
