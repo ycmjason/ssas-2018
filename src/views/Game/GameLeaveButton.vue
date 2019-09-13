@@ -9,7 +9,7 @@ export default {
     leaving: false,
   }),
   methods: {
-    async leave () {
+    async leave() {
       if (!this.game) throw Error('No game is passed');
       this.leaving = true;
       await this.$store.dispatch('leaveGame', this.game);

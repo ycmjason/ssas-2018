@@ -3,7 +3,7 @@ import { findUserByUid, createOrUpdateUser } from './db/users';
 
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
-const signInWith = async (providerName) => {
+const signInWith = async providerName => {
   const provider = (() => {
     if (providerName === 'google') {
       const provider = new firebase.auth.GoogleAuthProvider();
@@ -67,7 +67,7 @@ export const signOut = async () => await firebase.auth().signOut();
 
 export const getCurrentUser = (() => {
   const currentUserReady = new Promise((res, rej) => {
-    const unsub = firebase.auth().onAuthStateChanged((user) => {
+    const unsub = firebase.auth().onAuthStateChanged(user => {
       res();
       unsub();
     });

@@ -1,12 +1,16 @@
 <template>
-  <ExternalLink class="link btn btnInversed" :class="show? 'show': ''" href="https://goo.gl/forms/5diWqYShzXvGpuUt2">
+  <ExternalLink
+    class="link btn btnInversed"
+    :class="show ? 'show' : ''"
+    href="https://goo.gl/forms/5diWqYShzXvGpuUt2"
+  >
     Got feedback?
   </ExternalLink>
 </template>
 
 <script>
 export default {
-  mounted () {
+  mounted() {
     setTimeout(() => {
       this.show = true;
     }, 3000);
@@ -23,7 +27,7 @@ export default {
   right: 1rem;
   bottom: 1rem;
   transform: translateX(2rem) translateX(100%);
-  transition: transform 0.3s;;
+  transition: transform 0.3s;
 
   &.show {
     transform: translateX(2rem) translateX(100%);
@@ -32,6 +36,5 @@ export default {
       transform: none;
     }
   }
-
 }
 </style>

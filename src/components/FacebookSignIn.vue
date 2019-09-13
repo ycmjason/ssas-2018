@@ -12,7 +12,7 @@ export default {
     },
   },
   methods: {
-    async signIn () {
+    async signIn() {
       if (await this.$store.dispatch('signInWithFacebook')) {
         this.$router.push(this.returnTo);
       }
@@ -23,7 +23,7 @@ export default {
 
 <style scoped>
 button {
-  background: #4267B2;
+  background: #4267b2;
   color: white;
   padding: 0.8rem;
   display: block;

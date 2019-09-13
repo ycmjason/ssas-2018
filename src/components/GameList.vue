@@ -3,11 +3,12 @@
   <div class="noGameFound" v-else-if="games.length <= 0">No games found.</div>
   <div v-else class="gameCards">
     <router-link
-        v-for="{ id, title, description, creator, timestamps } in games"
-        :key="id"
-        :to="`/game/${id}`"
-        tag="div"
-        class="gameCard_wrapper">
+      v-for="{ id, title, description, creator, timestamps } in games"
+      :key="id"
+      :to="`/game/${id}`"
+      tag="div"
+      class="gameCard_wrapper"
+    >
       <Card class="gameCard">
         <h3>{{ title }}</h3>
         <footer class="gameCard_footer">

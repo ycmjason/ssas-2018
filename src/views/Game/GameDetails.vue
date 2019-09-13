@@ -3,22 +3,21 @@
     <div class="actions">
       <InviteLink :game="game" class="inviteLink" :disabled="isAllocated" />
       <AllocateButton
-          class="allocateButton"
-          v-if="isMaster"
-          :disabled="!canAllocate"
-          :participants="game.participants"
-          @allocated="allocation => setAllocation({ game, allocation })" />
-      <GameLeaveButton
-          class="gameLeaveButton"
-          :game="game"
-          v-if="!isMaster && !isAllocated" />
+        class="allocateButton"
+        v-if="isMaster"
+        :disabled="!canAllocate"
+        :participants="game.participants"
+        @allocated="allocation => setAllocation({ game, allocation })"
+      />
+      <GameLeaveButton class="gameLeaveButton" :game="game" v-if="!isMaster && !isAllocated" />
     </div>
 
     <MasterCard :isMaster="isMaster" :master="yourMaster" class="master_card" />
     <ParticipantsCard
-        class="participants_card"
-        :participants="game.participants"
-        :creatorUid="game.creator.uid" />
+      class="participants_card"
+      :participants="game.participants"
+      :creatorUid="game.creator.uid"
+    />
   </div>
 </template>
 
@@ -42,17 +41,17 @@ export default {
   },
   computed: {
     ...mapState(['user']),
-    yourMaster () {
+    yourMaster() {
       if (!this.game.allocation) return null;
       return this.game.allocation.find(({ from }) => from.uid === this.user.uid).to;
     },
-    isMaster () {
+    isMaster() {
       return this.game.creator.uid === this.user.uid;
     },
-    isAllocated () {
+    isAllocated() {
       return !!this.game.allocation;
     },
-    canAllocate () {
+    canAllocate() {
       return !this.isAllocated && this.game.participants.length >= 3;
     },
   },
@@ -61,7 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.master_card, .participants_card {
+.master_card,
+.participants_card {
   margin-top: 1rem;
 }
 

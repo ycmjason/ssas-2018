@@ -5,7 +5,7 @@
       Waiting for everyone to join this game.
     </p>
     <ExternalLink v-else :href="master.link" class="master_card_content">
-      <img :src="imgSrc">
+      <img :src="imgSrc" />
       {{ master.displayName }}
     </ExternalLink>
   </Card>
@@ -15,7 +15,7 @@
 export default {
   props: ['master', 'isMaster'],
   computed: {
-    imgSrc () {
+    imgSrc() {
       const { master } = this;
       if (master.fbid) {
         return `//graph.facebook.com/${master.fbid}/picture?type=large`;

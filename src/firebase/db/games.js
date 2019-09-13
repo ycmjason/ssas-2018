@@ -1,8 +1,4 @@
-import db, {
-  getServerTimestamp,
-  transformDocumentRef,
-  executeQuery,
-} from './index';
+import db, { getServerTimestamp, transformDocumentRef, executeQuery } from './index';
 
 import { getCurrentUser } from '@/firebase/auth';
 
@@ -42,19 +38,14 @@ export const createGame = async ({ title, description }) => {
 
 export const joinGame = async (game, user) => {
   await game._ref.update({
-    participants: [
-      ...game.participants.map(({ _ref }) => _ref),
-      user._ref,
-    ],
+    participants: [...game.participants.map(({ _ref }) => _ref), user._ref],
   });
 };
 
 export const leaveGame = async (game, user) => {
   await game._ref.update({
     participants: [
-      ...game.participants
-        .filter(({ uid }) => uid !== user.uid)
-        .map(({ _ref }) => _ref),
+      ...game.participants.filter(({ uid }) => uid !== user.uid).map(({ _ref }) => _ref),
     ],
   });
 };

@@ -31,7 +31,7 @@ export default {
     },
   }),
   methods: {
-    async createGame ({ title, description }) {
+    async createGame({ title, description }) {
       await this.$store.dispatch('createGame', { title, description });
       this.$router.push('/dashboard');
     },
@@ -39,5 +39,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

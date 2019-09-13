@@ -10,12 +10,10 @@ import authGuard from './guards/authGuard';
 
 Vue.use(Router);
 
-const giphyfy = (component) => ({
+const giphyfy = component => ({
   functional: true,
-  render (h, { data, children }) {
-    return h('GiphyBackgroundLayout', {}, [
-      h(component, data, children),
-    ]);
+  render(h, { data, children }) {
+    return h('GiphyBackgroundLayout', {}, [h(component, data, children)]);
   },
 });
 
@@ -58,7 +56,7 @@ const router = new Router({
     },
   ].map(route => ({
     ...route,
-    component: route.component? giphyfy(route.component): route.component,
+    component: route.component ? giphyfy(route.component) : route.component,
   })),
 });
 

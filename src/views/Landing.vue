@@ -1,13 +1,13 @@
 <template>
   <section class="landing">
     <Card class="loginCard">
-      <img class="logo" src="@/assets/logo.svg">
+      <img class="logo" src="@/assets/logo.svg" />
       <h1>SSAS</h1>
       <p v-if="query.returnTo && query.invite">Please login to join.</p>
       <p v-else-if="query.returnTo">Please login to continue.</p>
       <div class="loginButtons">
-        <GoogleSignIn :returnTo="query.returnTo"/>
-        <FacebookSignIn :returnTo="query.returnTo"/>
+        <GoogleSignIn :returnTo="query.returnTo" />
+        <FacebookSignIn :returnTo="query.returnTo" />
       </div>
     </Card>
   </section>
@@ -48,7 +48,8 @@ export default {
   max-width: 500px;
 }
 
-h1, p {
+h1,
+p {
   text-align: center;
 }
 

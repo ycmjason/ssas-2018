@@ -8,18 +8,20 @@
         v-if="field.type === 'textarea'"
         v-model="values[key]"
         :placeholder="getPlaceholder(field)"
-        v-bind="field.attrs"/>
+        v-bind="field.attrs"
+      />
       <input
         v-else
         v-model="values[key]"
         :placeholder="getPlaceholder(field)"
         :type="field.type || 'text'"
-        v-bind="field.attrs"/>
+        v-bind="field.attrs"
+      />
 
       <div class="error" v-if="getErrorMessage(key)">{{ getErrorMessage(key) }}</div>
     </label>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" />
   </form>
 </template>
 
@@ -40,7 +42,7 @@ const PRESET_VALIDATORS = {
     }
   },
 };
-const resolveValidator = (field) => {
+const resolveValidator = field => {
   const validator = field[validator];
   if (typeof validator === 'function') return validator;
   if (typeof validator === 'string') {
@@ -65,7 +67,7 @@ field  :: {
 export default {
   props: ['fields'],
   data: ({ fields }) => ({
-    values: Object.keys(fields).reduce((o, f) => ({...o, [f]: ''}), {}),
+    values: Object.keys(fields).reduce((o, f) => ({ ...o, [f]: '' }), {}),
     errors: {},
   }),
   computed: {
@@ -102,9 +104,11 @@ export default {
           errors[key] = message;
         }
       });
-      requiredFieldKeys.filter(key => !values[key]).forEach(key => {
-        errors[key] = `${fields[key].label} is required!`;
-      });
+      requiredFieldKeys
+        .filter(key => !values[key])
+        .forEach(key => {
+          errors[key] = `${fields[key].label} is required!`;
+        });
       this.errors = errors;
       return Object.keys(this.errors).length <= 0;
     },
@@ -127,7 +131,8 @@ export default {
   margin-bottom: 0.2rem;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
 }
 

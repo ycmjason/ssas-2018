@@ -9,7 +9,7 @@ import { getRandomGif } from '@/utils/giphy';
 
 export default {
   name: 'GiphyBackground',
-  async created () {
+  async created() {
     this.bgImg = await getRandomGif('christmas');
   },
   data: () => ({

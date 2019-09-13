@@ -10,7 +10,7 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters(['isSignedIn']),
-    link () {
+    link() {
       return this.isSignedIn ? '/dashboard' : '/';
     },
   },
