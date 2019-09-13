@@ -23,7 +23,7 @@ const signInWith = async providerName => {
   const { user, additionalUserInfo } = await firebase.auth().signInWithPopup(provider);
 
   const { displayName, photoURL, uid } = user;
-  const { link, id } = additionalUserInfo.profile;
+  const { link = '', id } = additionalUserInfo.profile;
 
   const email = user.email || additionalUserInfo.profile.email;
 

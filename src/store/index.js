@@ -118,7 +118,7 @@ const store = new Vuex.Store({
 store.watch(
   ({ user }) => user,
   user => {
-    if (!user.uid) {
+    if (user && !user.uid) {
       store.dispatch('signOut');
     }
   },
