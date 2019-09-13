@@ -15,7 +15,7 @@ Vue.use(Vuex);
 
 const uniqById = xs => uniqBy(xs, ({ id }) => id);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     user: null,
     games: null,
@@ -114,3 +114,14 @@ export default new Vuex.Store({
     },
   },
 });
+
+store.watch(
+  ({ user }) => user,
+  user => {
+    if (!user.uid) {
+      store.dispatch('signOut');
+    }
+  },
+);
+
+export default store;
