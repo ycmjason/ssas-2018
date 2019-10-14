@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.4.0
+- FEATURE: Option to hide participants from users
+
 ## v0.3.2
 ## v0.3.1
 - Migrate from vue-cli to parcel
