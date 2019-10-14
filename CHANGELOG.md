@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.3.1
+- Migrate from vue-cli to parcel
+- Move from travis to github actions
+- Added continuous deployment action
+
 ## v0.3.0
 - Enabled Google login
 
