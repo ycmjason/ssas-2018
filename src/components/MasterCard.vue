@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import Card from '/elements/Card';
+import Card from '/elements/Card.vue.vue';
+import ExternalLink from '/elements/ExternalLink.vue';
 
 export default {
   components: { Card },
