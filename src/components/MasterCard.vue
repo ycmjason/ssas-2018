@@ -1,5 +1,5 @@
 <template>
-  <Card v-bind="$attrs">
+  <Card>
     <h3>You are the secret santa of</h3>
     <p v-if="!master" class="no_master">
       Waiting for everyone to join this game.
@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import Card from '/elements/Card.vue.vue';
+import Card from '/elements/Card.vue';
 import ExternalLink from '/elements/ExternalLink.vue';
 
 export default {
-  components: { Card },
-  props: ['master', 'isMaster'],
+  components: { Card, ExternalLink },
+  props: ['master'],
   computed: {
     imgSrc() {
       const { master } = this;

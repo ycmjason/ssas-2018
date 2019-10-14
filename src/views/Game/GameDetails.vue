@@ -1,18 +1,25 @@
 <template>
   <div>
-    <div class="actions">
-      <InviteLink :game="game" class="inviteLink" :disabled="isAllocated" />
-      <AllocateButton
-        class="allocateButton"
-        v-if="isMaster"
-        :disabled="!canAllocate"
-        :participants="game.participants"
-        @allocated="allocation => setAllocation({ game, allocation })"
-      />
-      <GameLeaveButton class="gameLeaveButton" :game="game" v-if="!isMaster && !isAllocated" />
-    </div>
+    <Card v-if="isOwner">
+      <h3>Owner Actions</h3>
+      <div class="owner-actions">
+        <InviteLink :game="game" class="invite-link" :disabled="isAllocated" />
+        <AllocateButton
+          class="allocateButton"
+          :disabled="!canAllocate"
+          :participants="game.participants"
+          @allocated="allocation => setAllocation({ game, allocation })"
+        />
+      </div>
+    </Card>
+    <Card v-else>
+      <h3>Actions</h3>
+      <div>
+        <GameLeaveButton :game="game" v-if="canLeave" />
+      </div>
+    </Card>
 
-    <MasterCard :isMaster="isMaster" :master="yourMaster" class="master_card" />
+    <MasterCard :master="yourMaster" class="master_card" />
     <ParticipantsCard class="participants_card" :participants="game.participants" :creatorUid="game.creator.uid" />
   </div>
 </template>
@@ -21,6 +28,7 @@
 import { mapState, mapActions } from 'vuex';
 
 import AllocateButton from '/components/AllocateButton.vue';
+import Card from '/elements/Card.vue';
 import InviteLink from '/components/InviteLink.vue';
 import MasterCard from '/components/MasterCard.vue';
 import ParticipantsCard from '/components/ParticipantsCard.vue';
@@ -34,6 +42,7 @@ export default {
     AllocateButton,
     GameLeaveButton,
     InviteLink,
+    Card,
   },
   computed: {
     ...mapState(['user']),
@@ -41,7 +50,7 @@ export default {
       if (!this.game.allocation) return null;
       return this.game.allocation.find(({ from }) => from.uid === this.user.uid).to;
     },
-    isMaster() {
+    isOwner() {
       return this.game.creator.uid === this.user.uid;
     },
     isAllocated() {
@@ -49,6 +58,9 @@ export default {
     },
     canAllocate() {
       return !this.isAllocated && this.game.participants.length >= 3;
+    },
+    canLeave() {
+      return !this.isOwner && !this.isAllocated;
     },
   },
   methods: mapActions(['setAllocation']),
@@ -61,15 +73,11 @@ export default {
   margin-top: 1rem;
 }
 
-.actions {
+.owner-actions {
   display: flex;
 
-  .inviteLink {
+  .invite-link {
     margin-right: 1rem;
-  }
-
-  .gameLeaveButton {
-    margin-left: auto;
   }
 }
 </style>

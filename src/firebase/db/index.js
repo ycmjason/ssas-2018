@@ -34,7 +34,11 @@ export const transformValue = async v => {
   if (!v) return v;
 
   if (v instanceof firebase.firestore.DocumentReference) {
-    return await transformDocumentRef(v);
+    const doc = await transformDocumentRef(v);
+    if (!doc) {
+      console.error('Cannot find', v);
+    }
+    return doc;
   }
 
   if (v instanceof firebase.firestore.Timestamp) {
