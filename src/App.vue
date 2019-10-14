@@ -22,7 +22,6 @@ export default {
 
 <style lang="postcss">
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css?family=Lora:800i|Open+Sans');
 
 :root {
   --font-family-heading: 'Lora', serif;

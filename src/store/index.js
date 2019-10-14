@@ -1,7 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { signInWithFacebook, signInWithGoogle, signOut, getCurrentUser } from '/firebase/auth';
-import { findGamesForUser, createGame, joinGame, leaveGame, setAllocation, findGameById } from '/firebase/db/games';
+import {
+  findGamesForUser,
+  createGame,
+  joinGame,
+  leaveGame,
+  setAllocation,
+  setIsParticipantsHidden,
+  findGameById,
+} from '/firebase/db/games';
 import { uniqBy } from '/utils/array';
 
 Vue.use(Vuex);
@@ -103,20 +111,17 @@ const store = new Vuex.Store({
       await dispatch('fetchGameById', game.id);
     },
 
+    async setIsParticipantsHidden({ dispatch }, { game, isParticipantsHidden }) {
+      game.isParticipantsHidden = !game.isParticipantsHidden;
+      await setIsParticipantsHidden(game, isParticipantsHidden);
+      await dispatch('fetchGameById', game.id);
+    },
+
     async leaveGame({ dispatch }, game) {
       await leaveGame(game, await getCurrentUser());
       await dispatch('fetchGameById', game.id);
     },
   },
 });
-
-store.watch(
-  ({ user }) => user,
-  user => {
-    if (user && !user.uid) {
-      store.dispatch('signOut');
-    }
-  },
-);
 
 export default store;

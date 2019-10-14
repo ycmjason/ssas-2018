@@ -28,6 +28,7 @@ export const createGame = async ({ title, description }) => {
     title,
     description,
     participants: [userRef],
+    isParticipantsHidden: false,
     timestamps: {
       created: getServerTimestamp(),
     },
@@ -55,4 +56,10 @@ export const setAllocation = async (game, allocation) => {
     allocation: allocation.map(({ from, to }) => ({ from: from._ref, to: to._ref })),
     'timestamps.allocation': getServerTimestamp(),
   });
+};
+
+export const setIsParticipantsHidden = async (game, isParticipantsHidden) => {
+  const currentUser = await getCurrentUser();
+  if (currentUser.uid !== game.creator.uid) return;
+  await game._ref.update({ isParticipantsHidden });
 };
