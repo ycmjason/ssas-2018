@@ -5,8 +5,6 @@
   "scripts": {
     "dev": "parcel serve src/index.html",
     "build": "parcel build src/index.html",
-    "predeploy": "NODE_ENV=production npm run build",
-    "deploy": "firebase -P default deploy",
     "predeploy:dev": "NODE_ENV=development npm run build",
     "deploy:dev": "firebase -P dev deploy",
     "preversion": "$EDITOR CHANGELOG.md",
