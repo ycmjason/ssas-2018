@@ -1,5 +1,6 @@
 # CHANGELOG
 
+## v0.3.2
 ## v0.3.1
 - Migrate from vue-cli to parcel
 - Move from travis to github actions
