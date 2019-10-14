@@ -5,12 +5,14 @@
 </template>
 
 <script>
-import YourGames from './YourGames.vue';
+import YourGames from '/views/Dashboard/YourGames.vue';
+import MainLayout from '/layouts/MainLayout.vue';
 
 export default {
   name: 'dashboard',
   components: {
     YourGames,
+    MainLayout,
   },
 };
 </script>

@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@/firebase/auth';
+import { getCurrentUser } from '/firebase/auth';
 
 export default async (to, from, next) => {
   if ((await getCurrentUser()) === null) {

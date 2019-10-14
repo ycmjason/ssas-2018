@@ -5,11 +5,12 @@
 </template>
 
 <script>
-import { getRandomGif } from '@/utils/giphy';
+import { getRandomGif } from '/utils/giphy';
 
 export default {
   name: 'GiphyBackground',
   async created() {
+    console.log('hi');
     this.bgImg = await getRandomGif('christmas');
   },
   data: () => ({

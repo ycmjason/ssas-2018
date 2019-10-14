@@ -11,7 +11,9 @@
 </template>
 
 <script>
+import Card from '/elements/Card.vue';
 export default {
+  components: { Card },
   props: ['game'],
   data: () => ({
     joining: false,
@@ -27,7 +29,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 div {
   display: flex;
   flex-direction: column;

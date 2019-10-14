@@ -1,11 +1,12 @@
 <template>
-  <div @click="back">
-    <CircleCharacterIcon class="backIcon">&lt;</CircleCharacterIcon> {{ label }}
-  </div>
+  <div @click="back"><CircleCharacterIcon class="backIcon">&lt;</CircleCharacterIcon> {{ label }}</div>
 </template>
 
 <script>
+import CircleCharacterIcon from '/elements/CircleCharacterIcon.vue';
+
 export default {
+  components: { CircleCharacterIcon },
   props: {
     to: {
       type: String,

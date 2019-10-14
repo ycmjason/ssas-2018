@@ -13,6 +13,14 @@
   </main>
 </template>
 
+<script>
+import Card from '/elements/Card';
+
+export default {
+  components: { Card },
+};
+</script>
+
 <style scoped>
 main {
   display: flex;

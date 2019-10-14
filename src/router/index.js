@@ -1,21 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Landing from '@/views/Landing.vue';
-import Dashboard from '@/views/Dashboard/Dashboard.vue';
-import CreateGame from '@/views/CreateGame.vue';
-import Game from '@/views/Game/Game.vue';
-import NotFound from '@/views/NotFound';
-
-import authGuard from './guards/authGuard';
+import Landing from '/views/Landing.vue';
+import GiphyBackgroundLayout from '/layouts/GiphyBackgroundLayout.vue';
+import authGuard from '/router/guards/authGuard';
 
 Vue.use(Router);
-
-const giphyfy = component => ({
-  functional: true,
-  render(h, { data, children }) {
-    return h('GiphyBackgroundLayout', {}, [h(component, data, children)]);
-  },
-});
 
 const router = new Router({
   mode: 'history',
@@ -28,19 +17,19 @@ const router = new Router({
     {
       path: '/dashboard',
       name: 'Dashboard',
-      component: Dashboard,
+      component: () => import('/views/Dashboard/Dashboard.vue'),
       beforeEnter: authGuard,
     },
     {
       path: '/create',
       name: 'CreateGame',
-      component: CreateGame,
+      component: () => import('/views/CreateGame.vue'),
       beforeEnter: authGuard,
     },
     {
       path: '/game/:id',
       name: 'Game',
-      component: Game,
+      component: () => import('/views/Game/Game.vue'),
       props: true,
       beforeEnter: authGuard,
     },
@@ -48,16 +37,13 @@ const router = new Router({
       path: '/404',
       name: 'Not Found',
       props: true,
-      component: NotFound,
+      component: () => import('/views/NotFound.vue'),
     },
     {
       path: '*',
       redirect: '/404',
     },
-  ].map(route => ({
-    ...route,
-    component: route.component ? giphyfy(route.component) : route.component,
-  })),
+  ],
 });
 
 export default router;

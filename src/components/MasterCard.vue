@@ -12,7 +12,10 @@
 </template>
 
 <script>
+import Card from '/elements/Card';
+
 export default {
+  components: { Card },
   props: ['master', 'isMaster'],
   computed: {
     imgSrc() {
@@ -31,7 +34,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .no_master {
   text-align: center;
   font-style: italic;

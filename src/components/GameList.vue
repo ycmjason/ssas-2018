@@ -23,7 +23,10 @@
 </template>
 
 <script>
+import Card from '/elements/Card';
+
 export default {
+  components: { Card },
   props: {
     games: {
       type: Array,
@@ -33,7 +36,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .noGameFound {
   text-align: center;
   font-style: italic;

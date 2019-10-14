@@ -4,6 +4,10 @@
   </span>
 </template>
 
+<script>
+export default {};
+</script>
+
 <style scoped>
 .icon {
   font-family: var(--font-family-body);

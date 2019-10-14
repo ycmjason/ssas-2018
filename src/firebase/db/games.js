@@ -1,6 +1,6 @@
-import db, { getServerTimestamp, transformDocumentRef, executeQuery } from './index';
+import db, { getServerTimestamp, transformDocumentRef, executeQuery } from '/firebase/db';
 
-import { getCurrentUser } from '@/firebase/auth';
+import { getCurrentUser } from '/firebase/auth';
 
 const gamesRef = db.collection('games');
 
@@ -44,9 +44,7 @@ export const joinGame = async (game, user) => {
 
 export const leaveGame = async (game, user) => {
   await game._ref.update({
-    participants: [
-      ...game.participants.filter(({ uid }) => uid !== user.uid).map(({ _ref }) => _ref),
-    ],
+    participants: [...game.participants.filter(({ uid }) => uid !== user.uid).map(({ _ref }) => _ref)],
   });
 };
 

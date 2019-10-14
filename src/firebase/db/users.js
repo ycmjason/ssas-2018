@@ -1,4 +1,4 @@
-import db, { getServerTimestamp, transformDocumentRef } from './index';
+import db, { getServerTimestamp, transformDocumentRef } from '/firebase/db';
 
 const usersRef = db.collection('users');
 

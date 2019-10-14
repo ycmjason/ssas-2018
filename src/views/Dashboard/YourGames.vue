@@ -17,9 +17,11 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 
-import GameList from '@/components/GameList.vue';
+import GameList from '/components/GameList.vue';
+import CircleCharacterIcon from '/elements/CircleCharacterIcon.vue';
 
 export default {
+  components: { CircleCharacterIcon, GameList },
   computed: {
     ...mapState(['user']),
     ...mapGetters(['myGames']),
@@ -31,9 +33,6 @@ export default {
       },
       immediate: true,
     },
-  },
-  components: {
-    GameList,
   },
 };
 </script>

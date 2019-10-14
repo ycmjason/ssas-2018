@@ -6,6 +6,14 @@
   </section>
 </template>
 
+<script>
+import Card from '/elements/Card';
+
+export default {
+  components: { Card },
+};
+</script>
+
 <style scoped>
 .wrapper {
   display: flex;

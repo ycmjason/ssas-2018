@@ -7,11 +7,15 @@
 </template>
 
 <script>
-import Survey from '@/components/Survey.vue';
+import MainLayout from '/layouts/MainLayout.vue';
+import Back from '/elements/Back.vue';
+import Survey from '/components/Survey.vue';
 
 export default {
   name: 'createGame',
   components: {
+    MainLayout,
+    Back,
     Survey,
   },
   data: () => ({

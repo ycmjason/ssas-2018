@@ -1,5 +1,5 @@
-import firebase from './index';
-import { findUserByUid, createOrUpdateUser } from './db/users';
+import firebase from '/firebase';
+import { findUserByUid, createOrUpdateUser } from '/firebase/db/users';
 
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 

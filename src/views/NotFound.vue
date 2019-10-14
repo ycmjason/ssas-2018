@@ -9,9 +9,11 @@
 </template>
 
 <script>
-import { getRandomGif } from '@/utils/giphy';
+import { getRandomGif } from '/utils/giphy';
+import HomeLink from '/elements/HomeLink.vue';
 
 export default {
+  template: { HomeLink },
   async created() {
     this.img = await getRandomGif('puppy');
   },

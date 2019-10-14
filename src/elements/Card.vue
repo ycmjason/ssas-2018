@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .card {
   background: white;
   padding: 1rem;

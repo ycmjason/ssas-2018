@@ -1,20 +1,27 @@
 <template>
   <div id="app">
-    <router-view />
+    <GiphyBackgroundLayout>
+      <router-view />
+    </GiphyBackgroundLayout>
   </div>
 </template>
 
 <script>
-import { getCurrentUser } from '@/firebase/auth';
+import GiphyBackgroundLayout from '/layouts/GiphyBackgroundLayout.vue';
+import { getCurrentUser } from '/firebase/auth';
 
 export default {
+  components: {
+    GiphyBackgroundLayout,
+  },
   async created() {
     this.$store.commit('setUser', await getCurrentUser());
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="postcss">
+@import 'normalize.css';
 @import url('https://fonts.googleapis.com/css?family=Lora:800i|Open+Sans');
 
 :root {

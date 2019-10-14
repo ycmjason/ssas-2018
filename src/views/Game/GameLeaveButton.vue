@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 div {
   display: flex;
   flex-direction: column;

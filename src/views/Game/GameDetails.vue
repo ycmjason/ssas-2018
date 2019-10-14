@@ -13,21 +13,17 @@
     </div>
 
     <MasterCard :isMaster="isMaster" :master="yourMaster" class="master_card" />
-    <ParticipantsCard
-      class="participants_card"
-      :participants="game.participants"
-      :creatorUid="game.creator.uid"
-    />
+    <ParticipantsCard class="participants_card" :participants="game.participants" :creatorUid="game.creator.uid" />
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 
-import AllocateButton from '@/components/AllocateButton.vue';
-import InviteLink from '@/components/InviteLink.vue';
-import MasterCard from '@/components/MasterCard.vue';
-import ParticipantsCard from '@/components/ParticipantsCard.vue';
+import AllocateButton from '/components/AllocateButton.vue';
+import InviteLink from '/components/InviteLink.vue';
+import MasterCard from '/components/MasterCard.vue';
+import ParticipantsCard from '/components/ParticipantsCard.vue';
 import GameLeaveButton from './GameLeaveButton.vue';
 
 export default {
@@ -59,7 +55,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .master_card,
 .participants_card {
   margin-top: 1rem;

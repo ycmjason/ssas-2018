@@ -3,7 +3,7 @@
     <div class="container">
       <header>
         <HomeLink to="/" tag="h1" class="brand">
-          <img src="@/assets/logo.svg" class="logo" />
+          <img src="/assets/logo.svg" class="logo" />
           <div class="siteName"><u>S</u>ecret <u>S</u>anta <u>A</u>llocation <u>S</u>ystem</div>
           <div class="siteName-short">
             SSAS
@@ -38,24 +38,30 @@
 
 <script>
 import { mapState } from 'vuex';
-import { version } from '@/../package.json';
+import { version } from '/../package.json';
 
-import SignOut from '@/components/SignOut';
-import FeedbackButton from '@/components/FeedbackButton';
-import FacebookLike from '@/components/FacebookLike';
+import GiphyBackgroundLayout from '/layouts/GiphyBackgroundLayout.vue';
+import SignOut from '/components/SignOut.vue';
+import FeedbackButton from '/components/FeedbackButton.vue';
+import FacebookLike from '/components/FacebookLike.vue';
+import HomeLink from '/elements/HomeLink.vue';
+import ExternalLink from '/elements/ExternalLink.vue';
 
 export default {
   components: {
+    GiphyBackgroundLayout,
     SignOut,
     FeedbackButton,
     FacebookLike,
+    HomeLink,
+    ExternalLink,
   },
   data: () => ({ version }),
   computed: mapState(['user']),
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .logo {
   height: 1.5em;
   margin-right: 1rem;

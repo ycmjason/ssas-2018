@@ -1,4 +1,4 @@
-import firebase from '../index';
+import firebase from '/firebase';
 
 const db = firebase.firestore();
 
@@ -53,9 +53,7 @@ export const transformValue = async v => {
 };
 
 export const transformMap = async map => {
-  return (await Promise.all(
-    Object.entries(map).map(async ([k, v]) => [k, await transformValue(v)]),
-  )).reduce(
+  return (await Promise.all(Object.entries(map).map(async ([k, v]) => [k, await transformValue(v)]))).reduce(
     (newMap, [k, v]) => ({
       ...newMap,
       [k]: v,

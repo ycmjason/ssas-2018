@@ -7,11 +7,11 @@
           <img class="profile_picture" :src="parti.photoURL" />
           {{ parti.displayName }}
           <template v-if="parti.uid === creatorUid">
-            (owner)</template
-          >
+            (owner)
+          </template>
           <template v-if="parti.uid === user.uid">
-            (you)</template
-          >
+            (you)
+          </template>
         </ExternalLink>
       </li>
     </ul>
@@ -21,13 +21,17 @@
 <script>
 import { mapState } from 'vuex';
 
+import Card from '/elements/Card.vue';
+import ExternalLink from '/elements/ExternalLink.vue';
+
 export default {
+  components: { Card, ExternalLink },
   props: ['participants', 'creatorUid'],
   computed: mapState(['user']),
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 ul {
   padding-left: 0;
   margin-bottom: 0;

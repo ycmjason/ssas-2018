@@ -1,15 +1,14 @@
 <template>
-  <ExternalLink
-    class="link btn btnInversed"
-    :class="show ? 'show' : ''"
-    href="https://goo.gl/forms/5diWqYShzXvGpuUt2"
-  >
+  <ExternalLink class="link btn btnInversed" :class="show ? 'show' : ''" href="https://goo.gl/forms/5diWqYShzXvGpuUt2">
     Got feedback?
   </ExternalLink>
 </template>
 
 <script>
+import ExternalLink from '/elements/ExternalLink.vue';
+
 export default {
+  components: { ExternalLink },
   mounted() {
     setTimeout(() => {
       this.show = true;
@@ -21,7 +20,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .link {
   position: fixed;
   right: 1rem;

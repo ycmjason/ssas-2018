@@ -19,12 +19,17 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
-import GameDetails from './GameDetails.vue';
-import GameEnded from './GameEnded.vue';
-import GameJoin from './GameJoin.vue';
+
+import MainLayout from '/layouts/MainLayout.vue';
+import Back from '/elements/Back.vue';
+import GameDetails from '/views/Game/GameDetails.vue';
+import GameEnded from '/views/Game/GameEnded.vue';
+import GameJoin from '/views/Game/GameJoin.vue';
 
 export default {
   components: {
+    MainLayout,
+    Back,
     GameDetails,
     GameEnded,
     GameJoin,
@@ -63,7 +68,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 p {
   flex-grow: 1;
   width: 100%;

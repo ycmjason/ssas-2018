@@ -1,7 +1,7 @@
 <template>
   <section class="landing">
     <Card class="loginCard">
-      <img class="logo" src="@/assets/logo.svg" />
+      <img class="logo" src="/assets/logo.svg" />
       <h1>SSAS</h1>
       <p v-if="query.returnTo && query.invite">Please login to join.</p>
       <p v-else-if="query.returnTo">Please login to continue.</p>
@@ -14,12 +14,14 @@
 </template>
 
 <script>
-import FacebookSignIn from '@/components/FacebookSignIn.vue';
-import GoogleSignIn from '@/components/GoogleSignIn.vue';
+import Card from '/elements/Card.vue';
+import FacebookSignIn from '/components/FacebookSignIn.vue';
+import GoogleSignIn from '/components/GoogleSignIn.vue';
 
 export default {
   name: 'landing',
   components: {
+    Card,
     FacebookSignIn,
     GoogleSignIn,
   },
@@ -29,7 +31,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .landing {
   min-height: 100vh;
   display: flex;

@@ -1,15 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { signInWithFacebook, signInWithGoogle, signOut, getCurrentUser } from '../firebase/auth';
-import {
-  findGamesForUser,
-  createGame,
-  joinGame,
-  leaveGame,
-  setAllocation,
-  findGameById,
-} from '@/firebase/db/games';
-import { uniqBy } from '@/utils/array';
+import { signInWithFacebook, signInWithGoogle, signOut, getCurrentUser } from '/firebase/auth';
+import { findGamesForUser, createGame, joinGame, leaveGame, setAllocation, findGameById } from '/firebase/db/games';
+import { uniqBy } from '/utils/array';
 
 Vue.use(Vuex);
 
@@ -59,6 +52,8 @@ const store = new Vuex.Store({
 
     async signOut({ commit }) {
       await signOut();
+      commit('setCurrentGameId', null);
+      commit('clearGames');
       commit('setUser', null);
     },
 

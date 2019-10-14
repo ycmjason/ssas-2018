@@ -1,9 +1,8 @@
-import 'normalize.css';
-
+import 'regenerator-runtime/runtime';
 import Vue from 'vue';
-import App from './App.vue';
-import store from './store';
-import router from './router';
+import App from '/App.vue';
+import store from '/store';
+import router from '/router';
 
 Vue.config.productionTip = process.env.NODE_ENV === 'development';
 
@@ -15,15 +14,6 @@ Vue.filter('date', date => {
 
   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 });
-
-const registerAll = (context, prefix = '') =>
-  context.keys().forEach(p => {
-    let name = p.match(/\.\/(.*?)\.vue/)[1];
-    Vue.component(prefix + name, context(p).default);
-  });
-
-registerAll(require.context('@/elements', false, /.*\.vue/));
-registerAll(require.context('@/layouts', false, /.*\.vue/));
 
 new Vue({
   store,
