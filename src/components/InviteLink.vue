@@ -42,4 +42,8 @@ export default {
   position: absolute;
   z-index: -1;
 }
+
+button {
+  width: 100%;
+}
 </style>

@@ -2,16 +2,16 @@
   <div>
     <Card v-if="isOwner" class="owner-actions-card">
       <h3>Owner Actions</h3>
-      <div class="owner-actions">
-        <InviteLink :game="game" class="owner-action" :disabled="isAllocated" />
+      <div class="actions">
+        <InviteLink :game="game" class="actions__action" :disabled="isAllocated" />
         <AllocateButton
-          class="owner-action"
+          class="actions__action"
           :disabled="!canAllocate"
           :participants="game.participants"
           @allocated="allocation => setAllocation({ game, allocation })"
         />
         <CheckButton
-          class="owner-action"
+          class="actions__action"
           :checked="!!game.isParticipantsHidden"
           :disabled="isSaving"
           @toggle="isParticipantsHidden => setIsParticipantsHidden(isParticipantsHidden)"
@@ -22,8 +22,8 @@
     </Card>
     <Card v-else>
       <h3>Actions</h3>
-      <div>
-        <GameLeaveButton :game="game" :disabled="!canLeave" />
+      <div class="actions">
+        <GameLeaveButton :game="game" :disabled="!canLeave" class="actions__action" />
       </div>
     </Card>
 
@@ -121,14 +121,29 @@ export default {
     top: 0.5rem;
     right: 0.5rem;
   }
-  .owner-actions {
-    display: flex;
+}
 
-    .owner-action {
-      margin-right: 1rem;
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 
-      &:last-child {
-        margin-right: 0;
+  @media (min-width: 900px) {
+    flex-direction: row;
+  }
+
+  &__action {
+    flex-grow: 1;
+
+    @media (min-width: 900px) {
+      flex-grow: 0;
+    }
+    & + & {
+      margin-top: 1rem;
+
+      @media (min-width: 900px) {
+        margin-left: 1rem;
+        margin-top: 0;
       }
     }
   }
