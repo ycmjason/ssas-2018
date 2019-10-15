@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.4.1
+- FIX: Mobile actions wrap
+
 ## v0.4.0
 - FEATURE: Option to hide participants from users
 
